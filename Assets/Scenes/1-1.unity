@@ -774,6 +774,7 @@ GameObject:
   - component: {fileID: 850364096}
   - component: {fileID: 850364097}
   - component: {fileID: 850364098}
+  - component: {fileID: 850364099}
   m_Layer: 0
   m_Name: Abilities
   m_TagString: Untagged
@@ -832,7 +833,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GroundedDetector: {fileID: 1578523720}
   PickupInput: {fileID: 11400000, guid: 3ad75c9dc26b5cf498d5321a19614044, type: 2}
-  PickupOffset: {x: 0, y: 0.2, z: 0}
+  PickupOffset: {x: 0, y: 0.45, z: 0}
+--- !u!114 &850364099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 850364095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53426fb3d7074624095353b17d117ae9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ThrowStrength: 0.5
+  Pickup: {fileID: 850364098}
+  ThrowInput: {fileID: 11400000, guid: ab180a1bb3977044e99901561aed6f3f, type: 2}
+  MoveController: {fileID: 981809740}
 --- !u!1 &945570946
 GameObject:
   m_ObjectHideFlags: 0
@@ -1553,6 +1570,7 @@ GameObject:
   - component: {fileID: 981809737}
   - component: {fileID: 981809740}
   - component: {fileID: 981809741}
+  - component: {fileID: 981809742}
   m_Layer: 0
   m_Name: Cultist
   m_TagString: Untagged
@@ -1654,6 +1672,20 @@ MonoBehaviour:
   InputBufferTime: 0.2
   CoyoteJumpTime: 0.2
   MinJumpHoldInSeconds: 0.15
+--- !u!114 &981809742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 981809736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17478eece4f964246a82240a3d96b477, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpriteRenderer: {fileID: 1143061110}
+  MoveController: {fileID: 981809740}
 --- !u!1 &983556211
 GameObject:
   m_ObjectHideFlags: 0
@@ -2436,6 +2468,7 @@ MonoBehaviour:
   ObjectToPick: {fileID: 1909374869}
   PhysicsObject: {fileID: 1909374867}
   PickupCollider: {fileID: 1884896613}
+  Gravity: {fileID: 11400000, guid: 9945cf150c6766848819c29f5994d73f, type: 2}
 --- !u!114 &1884896615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2695,3 +2728,4 @@ MonoBehaviour:
   ObjectToPick: {fileID: 30551410}
   PhysicsObject: {fileID: 30551411}
   PickupCollider: {fileID: 2103583879}
+  Gravity: {fileID: 11400000, guid: 9945cf150c6766848819c29f5994d73f, type: 2}

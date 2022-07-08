@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Licht.Impl.Events;
+using Licht.Impl.Orchestration;
+using Licht.Unity.Extensions;
 using Licht.Unity.Objects;
 using Licht.Unity.Physics;
 using UnityEngine;
@@ -13,6 +12,10 @@ public class Pickupable : BaseGameObject
     public Transform ObjectToPick;
     public LichtPhysicsObject PhysicsObject;
     public Collider2D PickupCollider;
+    public ScriptIdentifier Gravity;
+
+    private Transform _originalParent;
+    private LichtPhysics _physics;
 
     private void OnEnable()
     {
@@ -27,7 +30,9 @@ public class Pickupable : BaseGameObject
     protected override void OnAwake()
     {
         base.OnAwake();
+        _physics = this.GetLichtPhysics();
         PhysicsObject.AddCustomObject(this);
+        _originalParent = ObjectToPick.parent;
     }
 
     private void OnPickup(PickupEventArgs obj)
@@ -35,6 +40,38 @@ public class Pickupable : BaseGameObject
         if (obj.Target != this) return;
         PickupCollider.enabled = false;
         PhysicsObject.enabled = false;
+        _physics.BlockCustomPhysicsForceForObject(this, PhysicsObject, Gravity.Name);
+    }
+
+    public void Release(Vector2 speed)
+    {
+        PhysicsObject.enabled = PickupCollider.enabled = true;
+        ObjectToPick.parent = _originalParent;
+        _physics.UnblockCustomPhysicsForceForObject(this, PhysicsObject, Gravity.Name);
+        DefaultMachinery.AddBasicMachine(HandleRelease(speed));
+    }
+
+    private IEnumerable<IEnumerable<Action>> HandleRelease(Vector2 speed)
+    {
+        var xThrow = PhysicsObject
+            .GetSpeedAccessor(new Vector2(speed.x, 0))
+            .X
+            .SetTarget(0)
+            .Over(1f)
+            .Easing(EasingYields.EasingFunction.QuadraticEaseOut)
+            .UsingTimer(GameTimer)
+            .Build();
+
+        var yThrow = PhysicsObject
+            .GetSpeedAccessor(new Vector2(0, speed.y))
+            .Y
+            .SetTarget(0)
+            .Over(0.35f)
+            .Easing(EasingYields.EasingFunction.QuadraticEaseOut)
+            .UsingTimer(GameTimer)
+            .Build();
+
+        yield return xThrow.Combine(yThrow);
     }
 }
 

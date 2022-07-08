@@ -39,6 +39,13 @@ public class Pickup : BaseGameObject
         DefaultMachinery.AddBasicMachine(HandlePickup());
     }
 
+    public void Release(Vector2 speed)
+    {
+        if (PickedUpObject == null) return;
+        PickedUpObject.Release(speed);
+        PickedUpObject = null;
+    }
+
     private IEnumerable<IEnumerable<Action>> HandlePickup()
     {
         while (isActiveAndEnabled)
@@ -61,7 +68,7 @@ public class Pickup : BaseGameObject
                 pickupable.ObjectToPick.SetParent(transform);
 
                 yield return pickupable.ObjectToPick.GetAccessor()
-                    .Position.ToPosition(transform.position + PickupOffset)
+                    .LocalPosition.ToPosition(PickupOffset)
                     .Over(0.35f)
                     .Easing(EasingYields.EasingFunction.BackEaseInOut)
                     .UsingTimer(GameTimer)
