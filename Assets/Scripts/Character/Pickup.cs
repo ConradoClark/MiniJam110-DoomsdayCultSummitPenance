@@ -73,6 +73,13 @@ public class Pickup : BaseGameObject
                     .Easing(EasingYields.EasingFunction.BackEaseInOut)
                     .UsingTimer(GameTimer)
                     .Build();
+
+                while (pickupable.IsPickedUp)
+                {
+                    yield return TimeYields.WaitOneFrameX;
+                }
+
+                PickedUpObject = null;
             }
 
             yield return TimeYields.WaitOneFrameX;

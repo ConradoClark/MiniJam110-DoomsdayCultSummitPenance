@@ -13,6 +13,9 @@ public class Pickupable : BaseGameObject
     public LichtPhysicsObject PhysicsObject;
     public Collider2D PickupCollider;
     public ScriptIdentifier Gravity;
+    public bool IsPickedUp { get; private set; }
+
+    public bool AllowsPickup { get;  set; }
 
     private Transform _originalParent;
     private LichtPhysics _physics;
@@ -41,11 +44,14 @@ public class Pickupable : BaseGameObject
         PickupCollider.enabled = false;
         PhysicsObject.enabled = false;
         _physics.BlockCustomPhysicsForceForObject(this, PhysicsObject, Gravity.Name);
+        IsPickedUp = true;
     }
 
     public void Release(Vector2 speed)
     {
-        PhysicsObject.enabled = PickupCollider.enabled = true;
+        IsPickedUp = false;
+        PhysicsObject.enabled = true;
+        PickupCollider.enabled = AllowsPickup;
         ObjectToPick.parent = _originalParent;
         _physics.UnblockCustomPhysicsForceForObject(this, PhysicsObject, Gravity.Name);
         DefaultMachinery.AddBasicMachine(HandleRelease(speed));

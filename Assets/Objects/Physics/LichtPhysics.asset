@@ -21,5 +21,3 @@ MonoBehaviour:
     m_Bits: 8
   LichtPhysicsMachinery: {fileID: 11400000, guid: 5c973ef1feec0d24792f6126e4040464, type: 2}
   ScriptTimerRef: {fileID: 11400000, guid: fe12b4bcd4731024baaa01b92ad6a88d, type: 2}
-  UseStep: 1
-  Step: 0.05
