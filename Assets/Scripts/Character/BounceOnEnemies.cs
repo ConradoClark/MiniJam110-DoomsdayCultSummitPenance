@@ -19,7 +19,7 @@ public class BounceOnEnemies : BaseGameObject
     public LichtPhysicsCollisionDetector BouncingDetector;
     public LichtPhysicsObject PhysicsObject;
 
-    private IEventPublisher<OnHitEvents, OnHitEventArgs> _hitPublisher;
+    private IEventPublisher<HitEvents, OnHitEventArgs> _hitPublisher;
     private LichtPhysics _physics;
 
     protected override void OnAwake()
@@ -31,7 +31,7 @@ public class BounceOnEnemies : BaseGameObject
     private void OnEnable()
     {
         DefaultMachinery.AddBasicMachine(HandleBouncing());
-        _hitPublisher = this.RegisterAsEventPublisher<OnHitEvents, OnHitEventArgs>();
+        _hitPublisher = this.RegisterAsEventPublisher<HitEvents, OnHitEventArgs>();
     }
 
     private IEnumerable<IEnumerable<Action>> HandleBouncing()
@@ -49,7 +49,7 @@ public class BounceOnEnemies : BaseGameObject
                     continue;
                 }
 
-                _hitPublisher.PublishEvent(OnHitEvents.OnHit, new OnHitEventArgs
+                _hitPublisher.PublishEvent(HitEvents.OnHit, new OnHitEventArgs
                 {
                     Source = PhysicsObject,
                     Target = targetObject,

@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Core
 {
-    public enum OnHitEvents
+    public enum HitEvents
     {
         OnHit
     }

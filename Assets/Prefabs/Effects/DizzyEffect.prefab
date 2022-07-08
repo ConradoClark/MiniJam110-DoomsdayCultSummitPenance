@@ -121,4 +121,4 @@ MonoBehaviour:
   ScriptBasicMachineryObject: {fileID: 11400000, guid: 7edac10b2b649a549805dbea261307fc, type: 2}
   ScriptTimerObject: {fileID: 11400000, guid: fe12b4bcd4731024baaa01b92ad6a88d, type: 2}
   ActiveOnInitialization: 0
-  DurationInSeconds: 2
+  DurationInSeconds: 30

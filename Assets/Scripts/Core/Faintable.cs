@@ -13,6 +13,8 @@ public class Faintable : BaseGameObject
     public Animator Animator;
     public ScriptPrefab FaintEffect;
     public Vector2 FaintEffectOffset;
+    public Collider2D FaintCollider;
+
     public bool IsFainted { get; private set; }
 
     protected override void OnAwake()
@@ -23,23 +25,24 @@ public class Faintable : BaseGameObject
 
     private void OnEnable()
     {
-        this.ObserveEvent<OnHitEvents, OnHitEventArgs>(OnHitEvents.OnHit, OnHit);
+        this.ObserveEvent<HitEvents, OnHitEventArgs>(HitEvents.OnHit, OnHit);
     }
 
     private void OnDisable()
     {
-        this.StopObservingEvent<OnHitEvents, OnHitEventArgs>(OnHitEvents.OnHit, OnHit);
+        this.StopObservingEvent<HitEvents, OnHitEventArgs>(HitEvents.OnHit, OnHit);
     }
 
     private void OnHit(OnHitEventArgs obj)
     {
         if (obj.Target != PhysicsObject) return;
 
-        IsFainted = true;
+        IsFainted = FaintCollider.enabled = true;
         Animator.SetTrigger("Faint");
         if (FaintEffect.Pool.TryGetFromPool(out var effect))
         {
             effect.Component.transform.position = transform.position + (Vector3) FaintEffectOffset;
+            effect.Component.transform.SetParent(transform.parent);
         }
     }
 }
