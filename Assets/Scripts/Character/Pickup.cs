@@ -58,7 +58,7 @@ public class Pickup : BaseGameObject
             if (_pickupAction.WasPerformedThisFrame() && trigger.Collider != null && PickedUpObject == null)
             {
                 Debug.Log("Picked up " + pickupable.name);
-                PickedUpObject = pickupable;
+                
                 _pickupEventPublisher.PublishEvent(PickupEvents.OnPickup, new PickupEventArgs
                 {
                     Source = this,
@@ -73,6 +73,8 @@ public class Pickup : BaseGameObject
                     .Easing(EasingYields.EasingFunction.BackEaseInOut)
                     .UsingTimer(GameTimer)
                     .Build();
+
+                PickedUpObject = pickupable;
 
                 while (pickupable.IsPickedUp)
                 {
