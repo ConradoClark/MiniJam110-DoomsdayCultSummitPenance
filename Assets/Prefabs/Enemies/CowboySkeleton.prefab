@@ -292,6 +292,7 @@ GameObject:
   - component: {fileID: 1220121998895830983}
   - component: {fileID: 30551413}
   - component: {fileID: 30551414}
+  - component: {fileID: 30551415}
   m_Layer: 6
   m_Name: CowboySkeleton
   m_TagString: Enemy
@@ -314,7 +315,7 @@ Transform:
   - {fileID: 1220121998954166723}
   - {fileID: 1220121998150295094}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1220121998895830978
 SpriteRenderer:
@@ -443,6 +444,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PhysicsObject: {fileID: 1220121998895830976}
+--- !u!114 &30551415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220121998895830979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73a0c5dbf25b0564f9dd4d951aaf2ca0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PhysicsObject: {fileID: 1220121998895830976}
+  SacrificeType: 1
 --- !u!1 &1220121998954166748
 GameObject:
   m_ObjectHideFlags: 0
