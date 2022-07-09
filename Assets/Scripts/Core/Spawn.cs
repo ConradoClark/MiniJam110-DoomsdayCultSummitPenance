@@ -17,6 +17,12 @@ public class Spawn : BaseGameObject
     public LichtPhysicsObject PhysicsObject;
     public SacrificeType SacrificeType;
 
+    public bool HasBounds;
+    public float MinY;
+    public float MaxY;
+    public float MinX;
+    public float MaxX;
+
     public bool IsSacrificed { get; private set; }
     private Vector3 _initialPosition;
     private Resettable[] _resets;
@@ -45,8 +51,10 @@ public class Spawn : BaseGameObject
     {
         while (isActiveAndEnabled && !IsSacrificed)
         {
-            if (Vector2.Distance(_camera.transform.position, transform.position) > 10f &&
-                Vector2.Distance(_initialPosition, transform.position) > 10f)
+            if ((Vector2.Distance(_camera.transform.position, transform.position) > 10f &&
+                Vector2.Distance(_initialPosition, transform.position) > 10f) || 
+                HasBounds && (transform.position.y > MaxY || transform.position.y < MinY || 
+                              transform.position.x < MinX || transform.position.x > MaxX))
             {
                 transform.position = _initialPosition;
                 foreach (var reset in _resets)
