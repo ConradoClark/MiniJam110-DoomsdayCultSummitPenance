@@ -221,6 +221,7 @@ MonoBehaviour:
   FaintEffectOffset: {x: 0, y: 0.2}
   FaintCollider: {fileID: 1220121998150295092}
   Pickupable: {fileID: 1220121998150295099}
+  Kickable: {fileID: 1220121998150295098}
 --- !u!61 &1220121998150295092
 BoxCollider2D:
   m_ObjectHideFlags: 0

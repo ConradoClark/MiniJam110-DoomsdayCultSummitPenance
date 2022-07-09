@@ -18,10 +18,12 @@ public class Faintable : Resettable
     public Vector2 FaintEffectOffset;
     public Collider2D FaintCollider;
     public Pickupable Pickupable;
+    public Kickable Kickable;
 
     public bool IsFainted { get; private set; }
     private DurationPoolablePool _faintEffectPool;
     private DurationPoolable _currentFaintEffect;
+    private bool _comingBackToLife;
 
     protected override void OnAwake()
     {
@@ -48,10 +50,7 @@ public class Faintable : Resettable
         Animator.SetBool("Faint", true);
         if (_faintEffectPool.TryGetFromPool(out var effect))
         {
-            effect.DurationInSeconds = FaintDurationInSeconds;
-            effect.Component.transform.position = transform.position + (Vector3)FaintEffectOffset;
-            effect.Component.transform.SetParent(transform.parent);
-            _currentFaintEffect = effect;
+            SetEffect(effect);
         }
 
         if (Pickupable != null)
@@ -61,10 +60,45 @@ public class Faintable : Resettable
         DefaultMachinery.AddBasicMachine(ComeBackToLife());
     }
 
+    private void SetEffect(DurationPoolable effect)
+    {
+        effect.DurationInSeconds = FaintDurationInSeconds;
+        effect.Component.transform.position = transform.position + (Vector3)FaintEffectOffset;
+        effect.Component.transform.SetParent(transform.parent);
+        _currentFaintEffect = effect;
+    }
+
     private IEnumerable<IEnumerable<Action>> ComeBackToLife(bool instantly = false)
     {
-        if (!instantly) yield return TimeYields.WaitSeconds(GameTimer, FaintDurationInSeconds);
+        if (_comingBackToLife)
+        {
+            _comingBackToLife = false;
+            yield return TimeYields.WaitOneFrameX;
+        }
 
+        _comingBackToLife = true;
+        wait:
+
+        if (!instantly) yield return TimeYields.WaitSeconds(GameTimer, FaintDurationInSeconds, 
+            breakCondition: () => !_comingBackToLife || (Kickable != null && Kickable.WasKickedRecently) || (Pickupable != null && Pickupable.IsReleasing));
+
+        if ((Pickupable?.IsReleasing).GetValueOrDefault() || (Kickable?.WasKickedRecently).GetValueOrDefault())
+        {
+            if (_currentFaintEffect != null && !_currentFaintEffect.IsActive && _faintEffectPool.TryGetFromPool(out var effect))
+            {
+                SetEffect(effect);
+            }
+
+            while ((Pickupable?.IsReleasing).GetValueOrDefault() || (Kickable?.WasKickedRecently).GetValueOrDefault())
+            {
+                yield return TimeYields.WaitOneFrameX;
+            }
+
+            goto wait;
+        }
+
+        if (!_comingBackToLife) yield break;
+        
         IsFainted = FaintCollider.enabled = false;
         if (_currentFaintEffect != null && _currentFaintEffect.IsActive)
         {

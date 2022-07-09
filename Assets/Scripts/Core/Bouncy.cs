@@ -34,7 +34,7 @@ public class Bouncy : BaseGameObject
         {
             if (HitByWall())
             {
-                var bounceSpeed = 1 * -PhysicsObject.LatestDirection.x * BounceFactor;
+                var bounceSpeed = (PhysicsObject.LatestSpeed.x == 0 ? 1 : PhysicsObject.LatestSpeed.x) * -PhysicsObject.LatestDirection.x * BounceFactor;
 
                 Debug.Log("bounced! Bounce speed: "+ bounceSpeed);
 
@@ -57,6 +57,6 @@ public class Bouncy : BaseGameObject
     public bool HitByWall()
     {
         return WallDetector.Triggers.Any(t => t.TriggeredHit && Mathf.Abs(t.Hit.normal.x) > 0) &&
-               (Pickupable != null && Pickupable.Releasing || Kickable == null || Kickable.WasKickedRecently);
+               (Pickupable != null && Pickupable.IsReleasing || Kickable == null || Kickable.WasKickedRecently);
     }
 }

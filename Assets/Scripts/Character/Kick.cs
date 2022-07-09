@@ -32,13 +32,12 @@ public class Kick : BaseGameObject
                 _physics.TryGetPhysicsObjectByCollider(t.Collider, out var physicsObject) &&
                 physicsObject.TryGetCustomObject(out kickable));
 
-
-
             if (kick.Collider != null && kickable.IsKickable())
             {
                 Debug.Log("kicked");
 
                 kickable.PhysicsObject.TryGetCustomObject(out Bouncy bouncy);
+                kickable.SetKicked();
 
                 var initialSpeed = new Vector2(-kick.Hit.normal.x * KickStrength, KickStrength * 0.35f);
 

@@ -16,7 +16,7 @@ public class Pickupable : BaseGameObject
     public bool IsPickedUp { get; private set; }
 
     public bool AllowsPickup { get;  set; }
-    public bool Releasing { get; private set; }
+    public bool IsReleasing { get; private set; }
 
     private Transform _originalParent;
     private LichtPhysics _physics;
@@ -60,7 +60,7 @@ public class Pickupable : BaseGameObject
 
     private IEnumerable<IEnumerable<Action>> HandleRelease(Vector2 speed)
     {
-        Releasing = true;
+        IsReleasing = true;
         PhysicsObject.TryGetCustomObject(out Bouncy bouncy);
         var xThrow = PhysicsObject
             .GetSpeedAccessor(new Vector2(speed.x, 0))
@@ -82,7 +82,7 @@ public class Pickupable : BaseGameObject
             .Build();
 
         yield return xThrow.Combine(yThrow);
-        Releasing = false;
+        IsReleasing = false;
     }
 }
 
