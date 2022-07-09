@@ -1,17 +1,27 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Licht.Impl.Orchestration;
+using Licht.Unity.Objects;
 using Licht.Unity.Physics;
+using Licht.Unity.Physics.CollisionDetection;
 using UnityEngine;
 
-public class Kickable : MonoBehaviour
+public class Kickable : BaseGameObject
 {
     public Collider2D HitBox;
     public LichtPhysicsObject PhysicsObject;
     public Faintable Faintable;
     public bool AlwaysKickable;
+    public float KickStateDurationInSeconds = 2f;
 
-    private void Awake()
+    public bool WasKickedRecently { get; private set; }
+    private bool _isResettingKick;
+
+    protected override void OnAwake()
     {
+        base.OnAwake();
         PhysicsObject.AddCustomObject(this);
     }
 
@@ -19,4 +29,26 @@ public class Kickable : MonoBehaviour
     {
         return AlwaysKickable || Faintable != null && Faintable.IsFainted;
     }
+
+    public void SetKicked()
+    {
+        WasKickedRecently = true;
+        DefaultMachinery.AddBasicMachine(ResetKicked());
+    }
+
+    private IEnumerable<IEnumerable<Action>> ResetKicked()
+    {
+        if (_isResettingKick)
+        {
+            _isResettingKick = false;
+            yield return TimeYields.WaitOneFrameX;
+        }
+
+        _isResettingKick = true;
+        yield return TimeYields.WaitSeconds(GameTimer, KickStateDurationInSeconds);
+        WasKickedRecently = false;
+        _isResettingKick = false;
+    }
+
+
 }

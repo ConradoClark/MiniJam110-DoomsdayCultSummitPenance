@@ -32,9 +32,13 @@ public class Kick : BaseGameObject
                 _physics.TryGetPhysicsObjectByCollider(t.Collider, out var physicsObject) &&
                 physicsObject.TryGetCustomObject(out kickable));
 
+
+
             if (kick.Collider != null && kickable.IsKickable())
             {
                 Debug.Log("kicked");
+
+                kickable.PhysicsObject.TryGetCustomObject(out Bouncy bouncy);
 
                 var initialSpeed = new Vector2(-kick.Hit.normal.x * KickStrength, KickStrength * 0.35f);
 
@@ -43,6 +47,7 @@ public class Kick : BaseGameObject
                     .SetTarget(0)
                     .Easing(EasingYields.EasingFunction.QuadraticEaseOut)
                     .Over(0.5f)
+                    .BreakIf(() => bouncy != null && bouncy.HitByWall(), false)
                     .UsingTimer(GameTimer)
                     .Build();
 
