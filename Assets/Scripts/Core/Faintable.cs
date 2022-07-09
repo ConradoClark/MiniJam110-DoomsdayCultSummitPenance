@@ -6,9 +6,10 @@ using Licht.Impl.Events;
 using Licht.Impl.Orchestration;
 using Licht.Unity.Objects;
 using Licht.Unity.Physics;
+using Licht.Unity.Pooling;
 using UnityEngine;
 
-public class Faintable : BaseGameObject
+public class Faintable : Resettable
 {
     public LichtPhysicsObject PhysicsObject;
     public float FaintDurationInSeconds;
@@ -20,6 +21,7 @@ public class Faintable : BaseGameObject
 
     public bool IsFainted { get; private set; }
     private DurationPoolablePool _faintEffectPool;
+    private DurationPoolable _currentFaintEffect;
 
     protected override void OnAwake()
     {
@@ -47,8 +49,9 @@ public class Faintable : BaseGameObject
         if (_faintEffectPool.TryGetFromPool(out var effect))
         {
             effect.DurationInSeconds = FaintDurationInSeconds;
-            effect.Component.transform.position = transform.position + (Vector3) FaintEffectOffset;
+            effect.Component.transform.position = transform.position + (Vector3)FaintEffectOffset;
             effect.Component.transform.SetParent(transform.parent);
+            _currentFaintEffect = effect;
         }
 
         if (Pickupable != null)
@@ -58,10 +61,16 @@ public class Faintable : BaseGameObject
         DefaultMachinery.AddBasicMachine(ComeBackToLife());
     }
 
-    private IEnumerable<IEnumerable<Action>> ComeBackToLife()
+    private IEnumerable<IEnumerable<Action>> ComeBackToLife(bool instantly = false)
     {
-        yield return TimeYields.WaitSeconds(GameTimer, FaintDurationInSeconds);
+        if (!instantly) yield return TimeYields.WaitSeconds(GameTimer, FaintDurationInSeconds);
+
         IsFainted = FaintCollider.enabled = false;
+        if (_currentFaintEffect != null && _currentFaintEffect.IsActive)
+        {
+            _faintEffectPool.Release(_currentFaintEffect);
+        }
+
         Animator.SetBool("Faint", false);
 
         if (Pickupable != null && Pickupable.IsPickedUp)
@@ -69,5 +78,11 @@ public class Faintable : BaseGameObject
             Pickupable.AllowsPickup = false;
             Pickupable.Release(Vector2.zero);
         }
+    }
+
+    public override bool PerformReset()
+    {
+        DefaultMachinery.AddBasicMachine(ComeBackToLife(true));
+        return base.PerformReset();
     }
 }

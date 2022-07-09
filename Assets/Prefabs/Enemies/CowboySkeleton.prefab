@@ -444,6 +444,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PhysicsObject: {fileID: 1220121998895830976}
+  Renderer: {fileID: 1220121998895830978}
 --- !u!114 &30551415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -456,6 +457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73a0c5dbf25b0564f9dd4d951aaf2ca0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SpawnIdentifier: {fileID: 0}
   PhysicsObject: {fileID: 1220121998895830976}
   SacrificeType: 1
 --- !u!1 &1220121998954166748

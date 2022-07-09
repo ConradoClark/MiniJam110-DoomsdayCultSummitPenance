@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.Core;
 using Licht.Impl.Orchestration;
 using Licht.Unity.Extensions;
 using Licht.Unity.Objects;
 using Licht.Unity.Physics;
 using Licht.Unity.Physics.CollisionDetection;
 
-public class Damageable : BaseGameObject
+public class Damageable : Resettable
 {
     public int HitPoints;
     public Killable Killable;
@@ -70,5 +71,11 @@ public class Damageable : BaseGameObject
     {
         return DamageTypeMatch.Where(match => HitByDamageTypes.Contains(match.Key))
             .SelectMany(match => match.Value);
+    }
+
+    public override bool PerformReset()
+    {
+        _currentHitPoints = HitPoints;
+        return base.PerformReset();
     }
 }

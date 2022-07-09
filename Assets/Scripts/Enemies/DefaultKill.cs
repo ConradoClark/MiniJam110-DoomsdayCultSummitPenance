@@ -9,6 +9,7 @@ using UnityEngine;
 public class DefaultKill : Killable
 {
     public LichtPhysicsObject PhysicsObject;
+    public SpriteRenderer Renderer;
     public override IEnumerable<IEnumerable<Action>> Kill()
     {
         PhysicsObject.enabled = false;
@@ -33,6 +34,14 @@ public class DefaultKill : Killable
             .UsingTimer(GameTimer)
             .Build();
 
-        gameObject.SetActive(false); // temporary
+        Renderer.enabled = false;
+    }
+
+    public override bool PerformReset()
+    {
+        PhysicsObject.enabled = true;
+        transform.localRotation = Quaternion.identity;
+        Renderer.enabled = true;
+        return base.PerformReset();
     }
 }

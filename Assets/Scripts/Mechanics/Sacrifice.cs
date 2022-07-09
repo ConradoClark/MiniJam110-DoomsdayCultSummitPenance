@@ -6,7 +6,7 @@ namespace Assets.Scripts.Mechanics
 {
     public class Sacrifice : BaseGameObject
     {
-        public ScriptIdentifier Identifier;
+        public ScriptIdentifier[] SpawnIdentifiers;
         public SacrificeType Type;
         public int Amount;
 
@@ -26,6 +26,7 @@ namespace Assets.Scripts.Mechanics
             if (IsComplete || spawn.SacrificeType != Type) return;
 
             Spawns.Add(spawn);
+            spawn.MarkAsSacrifice();
             CheckSacrifice();
             OnSacrifice?.Invoke();
         }
