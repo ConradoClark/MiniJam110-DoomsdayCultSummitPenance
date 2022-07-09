@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Kickable : MonoBehaviour
 {
+    public Collider2D HitBox;
     public LichtPhysicsObject PhysicsObject;
     public Faintable Faintable;
     public bool AlwaysKickable;
