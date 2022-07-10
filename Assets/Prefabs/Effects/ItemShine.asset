@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -972327683, guid: f6b47201235b42c45b1197cb4ba686e7, type: 3}
+  m_Name: ItemShine
+  m_EditorClassIdentifier: 
+  Prefab: {fileID: 7856226388718777992, guid: 93b32e565296b0b4ab476b49eb18aa70, type: 3}
+  DefaultPoolSize: 40
+  Type: 1

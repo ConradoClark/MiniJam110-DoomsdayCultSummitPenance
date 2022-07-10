@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1b624765ee680d2469f73b27f64e9839
+guid: 97d2c23554aa708468f0776858b4feb2
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -118,7 +118,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GrassPlatform1_0
+      name: MiniGrassPlatform1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -130,22 +130,22 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -6, y: 8}
-        - {x: -7, y: 7}
+      - - {x: -7, y: -1}
         - {x: -7, y: -7}
         - {x: -6, y: -8}
         - {x: 8, y: -8}
-        - {x: 8, y: 8}
+        - {x: 8, y: 0}
+        - {x: -6, y: 0}
       tessellationDetail: 0
       bones: []
-      spriteID: 5663ba5d5a1b70e43926ca6cb1470500
-      internalID: -586098208
+      spriteID: 7172f16b4e54a464ba1b6091c11f46c4
+      internalID: -903923948
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GrassPlatform1_1
+      name: MiniGrassPlatform1_1
       rect:
         serializedVersion: 2
         x: 16
@@ -157,22 +157,22 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: 6, y: 8}
-        - {x: -8, y: 8}
+      - - {x: -8, y: 0}
         - {x: -8, y: -8}
         - {x: 6, y: -8}
         - {x: 7, y: -7}
-        - {x: 7, y: 7}
+        - {x: 7, y: -1}
+        - {x: 6, y: 0}
       tessellationDetail: 0
       bones: []
-      spriteID: 7d6c71d4c55fc0348b1322cd966a8840
-      internalID: -1653838658
+      spriteID: 5a212ad1e15c01f41aef532dd8bfbdff
+      internalID: -1243852505
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GrassPlatform1_2
+      name: MiniGrassPlatform1_2
       rect:
         serializedVersion: 2
         x: 0
@@ -183,17 +183,21 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -8, y: -8}
+        - {x: 8, y: -8}
+        - {x: 8, y: 0}
+        - {x: -8, y: 0}
       tessellationDetail: 0
       bones: []
-      spriteID: 16f119c52e5d12047811a539a8c967a6
-      internalID: -1020994050
+      spriteID: 423c9fb56bcb4044fae922e734f63893
+      internalID: 1792600466
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GrassPlatform1_3
+      name: MiniGrassPlatform1_3
       rect:
         serializedVersion: 2
         x: 16
@@ -204,11 +208,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -8, y: -8}
+        - {x: 8, y: -8}
+        - {x: 8, y: 0}
+        - {x: -8, y: 0}
       tessellationDetail: 0
       bones: []
-      spriteID: 4574931a2bcaf6f4c8d5bf4bded5c14c
-      internalID: 367767463
+      spriteID: 9977490efa272c24bb89dcc3dba6eb2d
+      internalID: 1913914552
       vertices: []
       indices: 
       edges: []
@@ -224,10 +232,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      GrassPlatform1_3: 367767463
-      GrassPlatform1_1: -1653838658
-      GrassPlatform1_0: -586098208
-      GrassPlatform1_2: -1020994050
+      MiniGrassPlatform1_3: 1913914552
+      MiniGrassPlatform1_2: 1792600466
+      MiniGrassPlatform1_1: -1243852505
+      MiniGrassPlatform1_0: -903923948
   spritePackingTag: 
   pSDRemoveMatte: 0
   userData: 

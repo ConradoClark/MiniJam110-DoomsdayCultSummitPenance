@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1b624765ee680d2469f73b27f64e9839
+guid: 856f11e18f3c39746bbbf78624e33aa9
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -118,7 +118,70 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GrassPlatform1_0
+      name: ItemShine_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 972390aecdee3a54099f0406352fb443
+      internalID: 2096708450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ItemShine_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01b8fbd05ca69194bbd5ada0f027f67c
+      internalID: 1892349741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ItemShine_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d1eca5c2d74583428b5b782d0539a30
+      internalID: 2125007605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ItemShine_3
       rect:
         serializedVersion: 2
         x: 0
@@ -126,26 +189,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape:
-      - - {x: -6, y: 8}
-        - {x: -7, y: 7}
-        - {x: -7, y: -7}
-        - {x: -6, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
+      physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5663ba5d5a1b70e43926ca6cb1470500
-      internalID: -586098208
+      spriteID: 471f932b762503d40aa8c0a278a946d2
+      internalID: -507212068
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GrassPlatform1_1
+      name: ItemShine_4
       rect:
         serializedVersion: 2
         x: 16
@@ -153,26 +210,41 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape:
-      - - {x: 6, y: 8}
-        - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 6, y: -8}
-        - {x: 7, y: -7}
-        - {x: 7, y: 7}
+      physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7d6c71d4c55fc0348b1322cd966a8840
-      internalID: -1653838658
+      spriteID: 9809cf5dbd177314dadaa0275d577ce4
+      internalID: -875601814
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GrassPlatform1_2
+      name: ItemShine_5
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e897d806586aad84ca73a37cbdeee8b8
+      internalID: -1068779356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ItemShine_6
       rect:
         serializedVersion: 2
         x: 0
@@ -180,20 +252,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 16f119c52e5d12047811a539a8c967a6
-      internalID: -1020994050
+      spriteID: d191a793128fa7c4f914c2b94091e8ea
+      internalID: -1364549441
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GrassPlatform1_3
+      name: ItemShine_7
       rect:
         serializedVersion: 2
         x: 16
@@ -201,14 +273,35 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4574931a2bcaf6f4c8d5bf4bded5c14c
-      internalID: 367767463
+      spriteID: 304d16a41ceff214eaaf5bf21070cf02
+      internalID: 1812280193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ItemShine_8
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 263269848dff9fb4ab6239642d3135d5
+      internalID: -1144911662
       vertices: []
       indices: 
       edges: []
@@ -224,10 +317,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      GrassPlatform1_3: 367767463
-      GrassPlatform1_1: -1653838658
-      GrassPlatform1_0: -586098208
-      GrassPlatform1_2: -1020994050
+      ItemShine_5: -1068779356
+      ItemShine_2: 2125007605
+      ItemShine_4: -875601814
+      ItemShine_1: 1892349741
+      ItemShine_7: 1812280193
+      ItemShine_8: -1144911662
+      ItemShine_3: -507212068
+      ItemShine_0: 2096708450
+      ItemShine_6: -1364549441
   spritePackingTag: 
   pSDRemoveMatte: 0
   userData: 

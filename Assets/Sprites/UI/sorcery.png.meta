@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1b624765ee680d2469f73b27f64e9839
+guid: f76d4db52ac197e47bab2ff6c286887e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 0
   alignment: 0
@@ -116,103 +116,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: GrassPlatform1_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 16
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: -6, y: 8}
-        - {x: -7, y: 7}
-        - {x: -7, y: -7}
-        - {x: -6, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5663ba5d5a1b70e43926ca6cb1470500
-      internalID: -586098208
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GrassPlatform1_1
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 16
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: 6, y: 8}
-        - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 6, y: -8}
-        - {x: 7, y: -7}
-        - {x: 7, y: 7}
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7d6c71d4c55fc0348b1322cd966a8840
-      internalID: -1653838658
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GrassPlatform1_2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 16f119c52e5d12047811a539a8c967a6
-      internalID: -1020994050
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GrassPlatform1_3
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4574931a2bcaf6f4c8d5bf4bded5c14c
-      internalID: 367767463
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
@@ -223,11 +127,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      GrassPlatform1_3: 367767463
-      GrassPlatform1_1: -1653838658
-      GrassPlatform1_0: -586098208
-      GrassPlatform1_2: -1020994050
+    nameFileIdTable: {}
   spritePackingTag: 
   pSDRemoveMatte: 0
   userData: 
