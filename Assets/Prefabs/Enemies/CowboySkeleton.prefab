@@ -480,6 +480,7 @@ GameObject:
   - component: {fileID: 30551414}
   - component: {fileID: 30551415}
   - component: {fileID: 2006526232046820683}
+  - component: {fileID: 2947493675489808469}
   m_Layer: 6
   m_Name: CowboySkeleton
   m_TagString: Enemy
@@ -654,6 +655,7 @@ MonoBehaviour:
   SpawnIdentifier: {fileID: 0}
   PhysicsObject: {fileID: 1220121998895830976}
   SacrificeType: 1
+  Respawn: 1
   HasBounds: 0
   MinY: 0
   MaxY: 0
@@ -678,6 +680,20 @@ MonoBehaviour:
   Faintable: {fileID: 1220121998150295093}
   Speed: 0.1
   InitialDirection: 1
+--- !u!114 &2947493675489808469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220121998895830979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 141ca285e88db2c48bfcc4a59a18a01d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PhysicsObject: {fileID: 1220121998895830976}
+  Faintable: {fileID: 1220121998150295093}
 --- !u!1 &1220121998954166748
 GameObject:
   m_ObjectHideFlags: 0

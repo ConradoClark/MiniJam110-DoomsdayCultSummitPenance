@@ -17,7 +17,8 @@ public class Damageable : Resettable
 
     public enum DamageType
     {
-        ThrownObject
+        ThrownObject,
+        Touch
     }
 
     public DamageType[] HitByDamageTypes;
@@ -39,20 +40,26 @@ public class Damageable : Resettable
 
     private static readonly Dictionary<DamageType, Type[]> DamageTypeMatch = new()
     {
-        { DamageType.ThrownObject, new[] { typeof(Kickable) } }
+        { DamageType.ThrownObject, new[] { typeof(Kickable) } },
+        { DamageType.Touch, new[] { typeof(DamageOnTouch) } }
     };
+
+    public event Action<Type, LichtPhysicsObject> OnDamage;
 
     private IEnumerable<IEnumerable<Action>> DetectDamage()
     {
         while (isActiveAndEnabled)
         {
+            Type damageType=null;
+            LichtPhysicsObject source = null;
             var hitDetected = HitDetector.Triggers.Any(t =>
-                t.TriggeredHit && _physics.TryGetPhysicsObjectByCollider(t.Collider, out var physicsObject) &&
-                GetTypeMatch().Any(type => physicsObject.HasCustomObjectOfType(type)));
+                t.TriggeredHit && _physics.TryGetPhysicsObjectByCollider(t.Collider, out source) &&
+                (damageType = GetTypeMatch().FirstOrDefault(type => source.HasCustomObjectOfType(type))) != null);
 
             if (hitDetected)
             {
                 _currentHitPoints -= 1;
+                OnDamage?.Invoke(damageType, source);
 
                 if (_currentHitPoints == 0 && Killable!=null)
                 {
