@@ -34,8 +34,6 @@ public class Kick : BaseGameObject
 
             if (kick.Collider != null && kickable.IsKickable())
             {
-                Debug.Log("kicked");
-
                 kickable.PhysicsObject.TryGetCustomObject(out Bouncy bouncy);
                 kickable.SetKicked();
 

@@ -12,6 +12,7 @@ namespace Assets.Scripts.UI
         public CollectableInventory Inventory;
         private void OnEnable()
         {
+            TextComponent.text = Inventory.Amount.ToString().PadLeft(NumberOfCharacters, '0');
             Inventory.OnCollect += Inventory_OnCollect;
         }
 

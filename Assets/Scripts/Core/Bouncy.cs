@@ -36,8 +36,6 @@ public class Bouncy : BaseGameObject
             {
                 var bounceSpeed = (PhysicsObject.LatestSpeed.x == 0 ? 1 : PhysicsObject.LatestSpeed.x) * -PhysicsObject.LatestDirection.x * BounceFactor;
 
-                Debug.Log("bounced! Bounce speed: "+ bounceSpeed);
-
                 var kickX = PhysicsObject.GetSpeedAccessor(new Vector2(bounceSpeed,0))
                     .X
                     .SetTarget(0)
