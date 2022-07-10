@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Licht.Unity.Objects;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "CollectableInventory", menuName = "DoomsdayCult/CollectableInventory", order = 1)]
 public class CollectableInventory : ScriptableObject
 {
-    public string Identifier;
+    public ScriptIdentifier Identifier;
     public int Amount;
 
     public event Action<int> OnCollect;
