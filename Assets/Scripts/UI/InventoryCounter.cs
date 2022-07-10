@@ -1,27 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class InventoryCounter : MonoBehaviour
+namespace Assets.Scripts.UI
 {
-    public TMP_Text TextComponent;
-
-    public int NumberOfCharacters;
-
-    public CollectableInventory Inventory;
-    private void OnEnable()
+    public class InventoryCounter : MonoBehaviour
     {
-        Inventory.OnCollect += Inventory_OnCollect;
-    }
+        public TMP_Text TextComponent;
 
-    private void OnDisable()
-    {
-        Inventory.OnCollect -= Inventory_OnCollect;
-    }
+        public int NumberOfCharacters;
 
-    private void Inventory_OnCollect(int obj)
-    {
-        TextComponent.text = Inventory.Amount.ToString().PadLeft(NumberOfCharacters, '0');
+        public CollectableInventory Inventory;
+        private void OnEnable()
+        {
+            Inventory.OnCollect += Inventory_OnCollect;
+        }
+
+        private void OnDisable()
+        {
+            Inventory.OnCollect -= Inventory_OnCollect;
+        }
+
+        private void Inventory_OnCollect(int obj)
+        {
+            TextComponent.text = Inventory.Amount.ToString().PadLeft(NumberOfCharacters, '0');
+        }
     }
 }
