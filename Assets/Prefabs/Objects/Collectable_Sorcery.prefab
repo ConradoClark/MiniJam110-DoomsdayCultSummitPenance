@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5102365728545959813}
   - component: {fileID: 5102365728545959814}
   - component: {fileID: 5102365728545959815}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collectable_Sorcery
   m_TagString: Untagged
   m_Icon: {fileID: 0}

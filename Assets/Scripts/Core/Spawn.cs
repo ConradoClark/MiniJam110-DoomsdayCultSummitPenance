@@ -17,6 +17,7 @@ public class Spawn : BaseGameObject
     public LichtPhysicsObject PhysicsObject;
     public SacrificeType SacrificeType;
 
+    public bool Respawn = true;
     public bool HasBounds;
     public float MinY;
     public float MaxY;
@@ -35,11 +36,23 @@ public class Spawn : BaseGameObject
         base.OnAwake();
         PhysicsObject.AddCustomObject(this);
         _resets = GetComponents<Resettable>().Concat(GetComponentsInChildren<Resettable>(true)).Distinct().ToArray();
+
+        gameObject.SetActive(false);
+        DefaultMachinery.AddBasicMachine(HandleActivation());
+    }
+
+    private IEnumerable<IEnumerable<Action>> HandleActivation()
+    {
+        while (Vector2.Distance(_camera.transform.position, transform.position) > 7.5f)
+        {
+            yield return TimeYields.WaitOneFrameX;
+        }
+        gameObject.SetActive(true);
     }
 
     private void OnEnable()
     {
-        DefaultMachinery.AddBasicMachine(HandleRespawn());
+        if (Respawn) DefaultMachinery.AddBasicMachine(HandleRespawn());
     }
 
     public void MarkAsSacrifice()
@@ -52,8 +65,8 @@ public class Spawn : BaseGameObject
         while (isActiveAndEnabled && !IsSacrificed)
         {
             if ((Vector2.Distance(_camera.transform.position, transform.position) > 10f &&
-                Vector2.Distance(_initialPosition, transform.position) > 10f) || 
-                HasBounds && (transform.position.y > MaxY || transform.position.y < MinY || 
+                Vector2.Distance(_initialPosition, transform.position) > 10f) ||
+                HasBounds && (transform.position.y > MaxY || transform.position.y < MinY ||
                               transform.position.x < MinX || transform.position.x > MaxX))
             {
                 transform.position = _initialPosition;

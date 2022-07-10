@@ -1493,8 +1493,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 146114872}
     m_Modifications:
     - target: {fileID: 30551415, guid: 62bc8e089c41623479a661feb7ad2389, type: 3}
-      propertyPath: m_Enabled
+      propertyPath: Respawn
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 30551415, guid: 62bc8e089c41623479a661feb7ad2389, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1220121998895830977, guid: 62bc8e089c41623479a661feb7ad2389, type: 3}
       propertyPath: m_RootOrder
@@ -1502,7 +1506,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1220121998895830977, guid: 62bc8e089c41623479a661feb7ad2389, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 38.16
+      value: 37.093
       objectReference: {fileID: 0}
     - target: {fileID: 1220121998895830977, guid: 62bc8e089c41623479a661feb7ad2389, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2235,7 +2239,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 95
+    m_Bits: 607
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -14277,7 +14281,7 @@ MonoBehaviour:
     useOutsideNormalAngle: 0
     layerMask:
       serializedVersion: 2
-      m_Bits: 1
+      m_Bits: 512
     minDepth: 0
     maxDepth: 0
     minNormalAngle: 0
