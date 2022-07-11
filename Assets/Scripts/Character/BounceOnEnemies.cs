@@ -41,7 +41,8 @@ public class BounceOnEnemies : BaseGameObject
             var bouncing = BouncingDetector.Triggers.FirstOrDefault();
             // Triggered bouncing / Not jumping / Not on ground
             if (bouncing.TriggeredHit && !JumpController.IsJumping && !PhysicsObject.GetPhysicsTrigger(Grounded) &&
-                _physics.TryGetPhysicsObjectByCollider(bouncing.Collider, out var targetObject))
+                _physics.TryGetPhysicsObjectByCollider(bouncing.Collider, out var targetObject)
+                && targetObject.HasCustomObjectOfType(typeof(CanBeBouncedOn)))
             {
                 if (targetObject.TryGetCustomObject<Faintable>(out var faintable) && faintable.IsFainted)
                 {

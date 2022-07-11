@@ -19,7 +19,10 @@ public class DamageOnTouch : BaseGameObject
 
     private void OnEnable()
     {
-        DefaultMachinery.AddBasicMachine(HandleActivation());
+        if (Faintable != null)
+        {
+            DefaultMachinery.AddBasicMachine(HandleActivation());
+        }
     }
 
     private IEnumerable<IEnumerable<Action>> HandleActivation()

@@ -79,11 +79,21 @@ public class Faintable : Resettable
         _comingBackToLife = true;
         wait:
 
-        if (!instantly) yield return TimeYields.WaitSeconds(GameTimer, FaintDurationInSeconds, 
+        if (!instantly) yield return TimeYields.WaitSeconds(GameTimer, FaintDurationInSeconds * 0.75f, 
+            breakCondition: () => !_comingBackToLife || (Kickable != null && Kickable.WasKickedRecently) || (Pickupable != null && Pickupable.IsReleasing));
+
+        if (_comingBackToLife && (Kickable == null || !Kickable.WasKickedRecently) &&
+            (Pickupable == null || !Pickupable.IsReleasing))
+        {
+            Animator.SetTrigger("Shake");
+        }
+
+        if (!instantly) yield return TimeYields.WaitSeconds(GameTimer, FaintDurationInSeconds * 0.25f,
             breakCondition: () => !_comingBackToLife || (Kickable != null && Kickable.WasKickedRecently) || (Pickupable != null && Pickupable.IsReleasing));
 
         if ((Pickupable?.IsReleasing).GetValueOrDefault() || (Kickable?.WasKickedRecently).GetValueOrDefault())
         {
+            Animator.SetTrigger("StopShake");
             if (_currentFaintEffect != null && !_currentFaintEffect.IsActive && _faintEffectPool.TryGetFromPool(out var effect))
             {
                 SetEffect(effect);
