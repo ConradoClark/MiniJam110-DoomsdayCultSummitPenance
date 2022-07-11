@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Core;
+using Licht.Impl.Events;
 using Licht.Impl.Orchestration;
 using Licht.Unity.Extensions;
 using Licht.Unity.Objects;
@@ -18,13 +19,17 @@ public class Damageable : Resettable
     public enum DamageType
     {
         ThrownObject,
-        Touch
+        Touch,
+        Bounce
     }
 
     public DamageType[] HitByDamageTypes;
     public LichtPhysicsCollisionDetector HitDetector;
     public float DamageCooldownInSeconds;
     private LichtPhysics _physics;
+
+    public bool CanBeDamaged { get; private set; }
+
 
     protected override void OnAwake()
     {
@@ -35,13 +40,44 @@ public class Damageable : Resettable
     private void OnEnable()
     {
         CurrentHitPoints = HitPoints;
+        CanBeDamaged = CurrentHitPoints > 0;
         DefaultMachinery.AddBasicMachine(DetectDamage());
+        this.ObserveEvent<HitEvents, OnHitEventArgs>(HitEvents.OnHit, OnHit);
     }
 
-    private static readonly Dictionary<DamageType, Type[]> DamageTypeMatch = new()
+    private void OnHit(OnHitEventArgs obj)
     {
-        { DamageType.ThrownObject, new[] { typeof(Kickable) } },
-        { DamageType.Touch, new[] { typeof(DamageOnTouch) } }
+        if (!CanBeDamaged || obj.Target != HitDetector.PhysicsObject) return;
+
+        Type damageType = null;
+        LichtPhysicsObject source = null;
+
+        var hitDetected = HitDetector.Triggers.Any(t =>
+            t.TriggeredHit && _physics.TryGetPhysicsObjectByCollider(t.Collider, out source) &&
+            (damageType = GetTypeMatch(true).FirstOrDefault(type => source.HasCustomObjectOfType(type))) != null);
+
+        if (hitDetected)
+        {
+            CurrentHitPoints -= 1;
+            OnDamage?.Invoke(damageType, source);
+
+            if (CurrentHitPoints == 0 && Killable != null)
+            {
+                DefaultMachinery.AddBasicMachine(Killable.Kill());
+            }
+        }
+    }
+
+    private void OnDisable()
+    {
+        this.StopObservingEvent<HitEvents, OnHitEventArgs>(HitEvents.OnHit, OnHit);
+    }
+
+    private static readonly Dictionary<DamageType, (Type[] types, bool requiresHit)> DamageTypeMatch = new()
+    {
+        { DamageType.ThrownObject, (new[] { typeof(Kickable) }, false) },
+        { DamageType.Touch, (new[] { typeof(DamageOnTouch) }, false) },
+        { DamageType.Bounce, (new[] { typeof(BounceOnEnemies) }, true) }
     };
 
     public event Action<Type, LichtPhysicsObject> OnDamage;
@@ -54,13 +90,14 @@ public class Damageable : Resettable
             LichtPhysicsObject source = null;
             var hitDetected = HitDetector.Triggers.Any(t =>
                 t.TriggeredHit && _physics.TryGetPhysicsObjectByCollider(t.Collider, out source) &&
-                (damageType = GetTypeMatch().FirstOrDefault(type => source.HasCustomObjectOfType(type))) != null);
+                (damageType = GetTypeMatch(false).FirstOrDefault(type => source.HasCustomObjectOfType(type))) != null);
 
             if (hitDetected)
             {
                 CurrentHitPoints -= 1;
                 OnDamage?.Invoke(damageType, source);
 
+                CanBeDamaged = false;
                 if (CurrentHitPoints == 0 && Killable!=null)
                 {
                     DefaultMachinery.AddBasicMachine(Killable.Kill());
@@ -68,6 +105,7 @@ public class Damageable : Resettable
                 }
 
                 yield return TimeYields.WaitSeconds(GameTimer, DamageCooldownInSeconds);
+                CanBeDamaged = CurrentHitPoints > 0;
             }
 
             yield return TimeYields.WaitOneFrameX;
@@ -81,15 +119,16 @@ public class Damageable : Resettable
         DefaultMachinery.AddBasicMachine(Killable.Kill());
     }
 
-    private IEnumerable<Type> GetTypeMatch()
+    private IEnumerable<Type> GetTypeMatch(bool requiresHit)
     {
         return DamageTypeMatch.Where(match => HitByDamageTypes.Contains(match.Key))
-            .SelectMany(match => match.Value);
+            .SelectMany(match => match.Value.requiresHit == requiresHit ? match.Value.types : Array.Empty<Type>());
     }
 
     public override bool PerformReset()
     {
         CurrentHitPoints = HitPoints;
+        CanBeDamaged = CurrentHitPoints > 0;
         return base.PerformReset();
     }
 }

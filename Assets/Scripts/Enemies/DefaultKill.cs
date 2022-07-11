@@ -10,11 +10,15 @@ public class DefaultKill : Killable
 {
     public LichtPhysicsObject PhysicsObject;
     public SpriteRenderer Renderer;
+
+    public float RotationAngle = 180;
+    public float DecreaseY = 5f;
+
     public override IEnumerable<IEnumerable<Action>> Kill()
     {
         PhysicsObject.enabled = false;
 
-        transform.localRotation = Quaternion.AngleAxis(180, Vector3.forward);
+        transform.localRotation = Quaternion.AngleAxis(RotationAngle, Vector3.forward);
 
         yield return transform.GetAccessor()
             .Position
@@ -28,7 +32,7 @@ public class DefaultKill : Killable
         yield return transform.GetAccessor()
             .Position
             .Y
-            .Decrease(5f)
+            .Decrease(DecreaseY)
             .Over(1f)
             .Easing(EasingYields.EasingFunction.QuadraticEaseInOut)
             .UsingTimer(GameTimer)

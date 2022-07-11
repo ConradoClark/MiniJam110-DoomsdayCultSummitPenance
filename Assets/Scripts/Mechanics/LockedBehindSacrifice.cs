@@ -6,6 +6,7 @@ using Assets.Scripts.Mechanics;
 using Licht.Unity.Objects;
 using UnityEngine;
 
+[DefaultExecutionOrder(9000)]
 public class LockedBehindSacrifice : BaseGameObject
 {
     public Sacrifice[] Sacrifices;

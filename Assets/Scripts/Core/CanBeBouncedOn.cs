@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Licht.Impl.Orchestration;
 using Licht.Unity.Objects;
 using Licht.Unity.Physics;
+using Licht.Unity.Physics.CollisionDetection;
 using UnityEngine;
 
 namespace Assets.Scripts.Core
@@ -12,11 +14,44 @@ namespace Assets.Scripts.Core
     public class CanBeBouncedOn : BaseGameObject
     {
         public LichtPhysicsObject PhysicsObject;
+        public LichtPhysicsCollisionDetector CollisionDetector;
+        public Damageable Damageable;
 
-        protected override void OnAwake()
+        private void OnEnable()
         {
-            base.OnAwake();
             PhysicsObject.AddCustomObject(this);
+            if (Damageable != null)
+            {
+                DefaultMachinery.AddBasicMachine(HandleBounceCooldown());
+            }
+        }
+
+        private void OnDisable()
+        {
+            PhysicsObject.RemoveCustomObject<CanBeBouncedOn>();
+        }
+
+        private IEnumerable<IEnumerable<Action>> HandleBounceCooldown()
+        {
+            while (isActiveAndEnabled)
+            {
+                if (!Damageable.CanBeDamaged)
+                {
+                    yield return TimeYields.WaitMilliseconds(GameTimer, 100);
+                    PhysicsObject.RemoveCustomObject<CanBeBouncedOn>();
+
+                    while (!Damageable.CanBeDamaged)
+                    {
+                        yield return TimeYields.WaitOneFrameX;
+
+                        if (!isActiveAndEnabled) break;
+                    }
+
+                    PhysicsObject.AddCustomObject(this);
+                }
+
+                yield return TimeYields.WaitOneFrameX;
+            }
         }
     }
 }

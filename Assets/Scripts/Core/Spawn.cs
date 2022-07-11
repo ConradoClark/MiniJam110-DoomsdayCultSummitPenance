@@ -11,8 +11,10 @@ using Licht.Unity.Objects;
 using Licht.Unity.Physics;
 using UnityEngine;
 
+[DefaultExecutionOrder(9999)]
 public class Spawn : BaseGameObject
 {
+    public Animator Animator;
     public ScriptIdentifier SpawnIdentifier;
     public LichtPhysicsObject PhysicsObject;
     public SacrificeType SacrificeType;
@@ -38,6 +40,9 @@ public class Spawn : BaseGameObject
         _resets = GetComponents<Resettable>().Concat(GetComponentsInChildren<Resettable>(true)).Distinct().ToArray();
 
         gameObject.SetActive(false);
+
+        SceneObject<SpawnCollection>.Instance().Add(this);
+
         DefaultMachinery.AddBasicMachine(HandleActivation());
     }
 
@@ -58,14 +63,31 @@ public class Spawn : BaseGameObject
     public void MarkAsSacrifice()
     {
         IsSacrificed = true;
+        DefaultMachinery.AddBasicMachine(DisablePhysicsObject().Combine(TriggerSacrificeAnim()));
+    }
+
+    private IEnumerable<IEnumerable<Action>> TriggerSacrificeAnim()
+    {
+        while (!Animator.isActiveAndEnabled)
+        {
+            yield return TimeYields.WaitOneFrameX;
+            Animator.SetTrigger("Sacrifice");
+        }
+    }
+
+    private IEnumerable<IEnumerable<Action>> DisablePhysicsObject()
+    {
+        yield return TimeYields.WaitMilliseconds(GameTimer, 200);
+        PhysicsObject.enabled = false;
     }
 
     private IEnumerable<IEnumerable<Action>> HandleRespawn()
     {
-        while (isActiveAndEnabled && !IsSacrificed)
+        while (isActiveAndEnabled && !IsSacrificed) 
         {
-            if ((Vector2.Distance(_camera.transform.position, transform.position) > 10f &&
-                Vector2.Distance(_initialPosition, transform.position) > 10f) ||
+            if ((Vector2.Distance(_camera.transform.position, transform.position) > 8f &&
+                Vector2.Distance(_initialPosition, transform.position) > 8f && 
+                Vector2.Distance(_initialPosition, _camera.transform.position) > 8f) ||
                 HasBounds && (transform.position.y > MaxY || transform.position.y < MinY ||
                               transform.position.x < MinX || transform.position.x > MaxX))
             {
