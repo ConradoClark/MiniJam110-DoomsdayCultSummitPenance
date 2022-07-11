@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.Character;
 using Assets.Scripts.Enemies;
 using Licht.Impl.Orchestration;
 using Licht.Unity.Extensions;
@@ -25,10 +26,13 @@ public class CharacterKill : Killable
     public LichtPhysicsCollisionDetector CollisionDetector;
 
     private LichtPhysics _physics;
+    private Player _player;
+
     protected override void OnAwake()
     {
         base.OnAwake();
         _physics = this.GetLichtPhysics();
+        _player = SceneObject<Player>.Instance();
     }
 
     private void OnEnable()
@@ -78,6 +82,8 @@ public class CharacterKill : Killable
             .Easing(EasingYields.EasingFunction.QuadraticEaseInOut)
             .UsingTimer(GameTimer)
             .Build();
+
+        _player.RemoveCultistFromList();
 
         Renderer.enabled = false;
 

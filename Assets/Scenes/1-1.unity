@@ -5576,7 +5576,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 825216569}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.892, y: 2.545, z: 0}
+  m_LocalPosition: {x: 0.693, y: 2.545, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14516,38 +14516,6 @@ CompositeCollider2D:
         Y: -5000100
       - X: 334375028
         Y: -5000100
-    - - X: 44062557
-        Y: -10000085
-      - X: 45000085
-        Y: -9062557
-      - X: 45000100
-        Y: -9062520
-      - X: 45000100
-        Y: -937480
-      - X: 45000085
-        Y: -937443
-      - X: 44062557
-        Y: 85
-      - X: 44062520
-        Y: 100
-      - X: 35937480
-        Y: 100
-      - X: 35937443
-        Y: 85
-      - X: 34999915
-        Y: -937443
-      - X: 34999900
-        Y: -937480
-      - X: 34999900
-        Y: -9062520
-      - X: 34999915
-        Y: -9062557
-      - X: 35937443
-        Y: -10000085
-      - X: 35937480
-        Y: -10000100
-      - X: 44062520
-        Y: -10000100
     - - X: 149375065
         Y: -5000085
       - X: 149687589
@@ -14580,6 +14548,38 @@ CompositeCollider2D:
         Y: -5000100
       - X: 149375028
         Y: -5000100
+    - - X: 44062557
+        Y: -10000085
+      - X: 45000085
+        Y: -9062557
+      - X: 45000100
+        Y: -9062520
+      - X: 45000100
+        Y: -937480
+      - X: 45000085
+        Y: -937443
+      - X: 44062557
+        Y: 85
+      - X: 44062520
+        Y: 100
+      - X: 35937480
+        Y: 100
+      - X: 35937443
+        Y: 85
+      - X: 34999915
+        Y: -937443
+      - X: 34999900
+        Y: -937480
+      - X: 34999900
+        Y: -9062520
+      - X: 34999915
+        Y: -9062557
+      - X: 35937443
+        Y: -10000085
+      - X: 35937480
+        Y: -10000100
+      - X: 44062520
+        Y: -10000100
     - - X: 505000100
         Y: -100
       - X: 505937262
@@ -14746,38 +14746,6 @@ CompositeCollider2D:
         Y: -15000100
       - X: 269375028
         Y: -15000100
-    - - X: 409062553
-        Y: -30000085
-      - X: 410000085
-        Y: -29062557
-      - X: 410000100
-        Y: -29062520
-      - X: 410000100
-        Y: -15937480
-      - X: 410000085
-        Y: -15937443
-      - X: 409062553
-        Y: -14999915
-      - X: 409062516
-        Y: -14999900
-      - X: 395937484
-        Y: -14999900
-      - X: 395937447
-        Y: -14999915
-      - X: 394999915
-        Y: -15937443
-      - X: 394999900
-        Y: -15937480
-      - X: 394999900
-        Y: -29062520
-      - X: 394999915
-        Y: -29062557
-      - X: 395937447
-        Y: -30000085
-      - X: 395937484
-        Y: -30000100
-      - X: 409062516
-        Y: -30000100
     - - X: 439062553
         Y: -30000085
       - X: 440000085
@@ -14809,6 +14777,38 @@ CompositeCollider2D:
       - X: 430937484
         Y: -30000100
       - X: 439062516
+        Y: -30000100
+    - - X: 409062553
+        Y: -30000085
+      - X: 410000085
+        Y: -29062557
+      - X: 410000100
+        Y: -29062520
+      - X: 410000100
+        Y: -15937480
+      - X: 410000085
+        Y: -15937443
+      - X: 409062553
+        Y: -14999915
+      - X: 409062516
+        Y: -14999900
+      - X: 395937484
+        Y: -14999900
+      - X: 395937447
+        Y: -14999915
+      - X: 394999915
+        Y: -15937443
+      - X: 394999900
+        Y: -15937480
+      - X: 394999900
+        Y: -29062520
+      - X: 394999915
+        Y: -29062557
+      - X: 395937447
+        Y: -30000085
+      - X: 395937484
+        Y: -30000100
+      - X: 409062516
         Y: -30000100
     - - X: 374375065
         Y: -30000085
@@ -15613,7 +15613,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 981809736}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 54.74, y: 0.71, z: 0}
+  m_LocalPosition: {x: -4, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15700,6 +15700,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff51feafa7370df47bc4646a96852478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CultistList: {fileID: 11400000, guid: 8ad9fffab7e690c4a94270e44c8b3b22, type: 2}
+  CurrentCultist: {fileID: 11400000, guid: f1c007118ced9a84991ec3b8714fc69d, type: 2}
+  SpriteRenderer: {fileID: 1143061110}
+  GemSpriteRenderer: {fileID: 1047640726}
 --- !u!114 &981809744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16694,7 +16698,7 @@ GameObject:
   - component: {fileID: 1047640725}
   - component: {fileID: 1047640726}
   m_Layer: 5
-  m_Name: sorcery_icon (1)
+  m_Name: GemType
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21698,7 +21702,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TextComponent: {fileID: 1817318626}
-  NumberOfCharacters: 2
+  NumberOfCharacters: 3
   Inventory: {fileID: 11400000, guid: 38a8144d95530f34ba4b56e5d1692b0d, type: 2}
 --- !u!1 &1831628043
 GameObject:

@@ -21,6 +21,7 @@ namespace Assets.Scripts.Character
 
         private LichtPhysics _physics;
         private LevelResults _levelResults;
+        private Player _player;
 
         public IEnumerable<IEnumerable<Action>> Sacrifice()
         {
@@ -34,6 +35,8 @@ namespace Assets.Scripts.Character
             base.OnAwake();
             _physics = this.GetLichtPhysics();
             _levelResults = SceneObject<LevelResults>.Instance();
+            _player = SceneObject<Player>.Instance();
+
         }
 
         private void OnEnable()
@@ -55,6 +58,7 @@ namespace Assets.Scripts.Character
                 {
                     yield return Sacrifice().AsCoroutine();
                     fire.Exit.Found = true;
+                    _player.RemoveCultistFromList();
 
                     yield return _levelResults.Show().AsCoroutine();
 

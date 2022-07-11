@@ -19,4 +19,10 @@ public class CollectableInventory : ScriptableObject
         Amount += amount;
         OnCollect?.Invoke(amount);
     }
+
+    public void Spend(int amount)
+    {
+        Amount -= amount;
+        OnCollect?.Invoke(-amount);
+    }
 }

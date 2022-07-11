@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: KeyHoleIcons Variant 3
+  m_Shader: {fileID: 4800000, guid: 624fbd8282cff5940a15c5e3b4b13632, type: 3}
+  m_Parent: {fileID: 2100000, guid: 7829748eece24854794b3987b54b9bec, type: 2}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - _ColorReplTolerance1: 1
+    - _ColorReplTolerance2: 1
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorReplSource1: {r: 0.6392157, g: 0.7607844, b: 0.5568628, a: 1}
+    - _ColorReplSource2: {r: 0.43529415, g: 0.6313726, b: 0.36862746, a: 1}
+    - _ColorReplTarget1: {r: 0.5176471, g: 0.65882355, b: 0.7411765, a: 1}
+    - _ColorReplTarget2: {r: 0.35686275, g: 0.5058824, b: 0.62352943, a: 1}
+    - _Colorize: {r: 0.5176471, g: 0.65882355, b: 0.7411765, a: 0}
+  m_BuildTextureStacks: []
