@@ -59,6 +59,7 @@ namespace Assets.Scripts.UI
 
         private void AdjustCounter()
         {
+            if (_items == null) return;
             for (var index = 0; index < _items.Length; index++)
             {
                 var item = _items[index];
