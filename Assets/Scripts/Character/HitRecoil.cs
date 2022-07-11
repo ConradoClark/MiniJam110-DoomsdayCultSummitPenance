@@ -27,7 +27,7 @@ public class HitRecoil : BaseGameObject
 
     private void Damageable_OnDamage(Type damageType, LichtPhysicsObject source)
     {
-        if (damageType != typeof(DamageOnTouch)) return;
+        if (damageType != typeof(DamageOnTouch) || source==null) return;
 
         DefaultMachinery.AddBasicMachine(Recoil(source));
     }

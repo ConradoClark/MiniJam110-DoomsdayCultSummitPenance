@@ -31,7 +31,7 @@ public class PlayerHitPoints : BaseGameObject
 
     private void Damageable_OnDamage(Type damageType, LichtPhysicsObject source)
     {
-        HealthCounter.Decrease(1);
+        HealthCounter.Set(Damageable.CurrentHitPoints);
     }
 
 }

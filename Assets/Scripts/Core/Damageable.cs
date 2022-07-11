@@ -13,7 +13,7 @@ public class Damageable : Resettable
     public int HitPoints;
     public Killable Killable;
 
-    private int _currentHitPoints;
+    public int CurrentHitPoints { get; private set; }
 
     public enum DamageType
     {
@@ -34,7 +34,7 @@ public class Damageable : Resettable
 
     private void OnEnable()
     {
-        _currentHitPoints = HitPoints;
+        CurrentHitPoints = HitPoints;
         DefaultMachinery.AddBasicMachine(DetectDamage());
     }
 
@@ -58,10 +58,10 @@ public class Damageable : Resettable
 
             if (hitDetected)
             {
-                _currentHitPoints -= 1;
+                CurrentHitPoints -= 1;
                 OnDamage?.Invoke(damageType, source);
 
-                if (_currentHitPoints == 0 && Killable!=null)
+                if (CurrentHitPoints == 0 && Killable!=null)
                 {
                     DefaultMachinery.AddBasicMachine(Killable.Kill());
                     break;
@@ -74,6 +74,13 @@ public class Damageable : Resettable
         }
     }
 
+    public void InstantKill()
+    {
+        CurrentHitPoints = 0;
+        OnDamage?.Invoke(typeof(DamageOnTouch), null);
+        DefaultMachinery.AddBasicMachine(Killable.Kill());
+    }
+
     private IEnumerable<Type> GetTypeMatch()
     {
         return DamageTypeMatch.Where(match => HitByDamageTypes.Contains(match.Key))
@@ -82,7 +89,7 @@ public class Damageable : Resettable
 
     public override bool PerformReset()
     {
-        _currentHitPoints = HitPoints;
+        CurrentHitPoints = HitPoints;
         return base.PerformReset();
     }
 }

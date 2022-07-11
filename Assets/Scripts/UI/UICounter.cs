@@ -35,6 +35,14 @@ namespace Assets.Scripts.UI
             AdjustCounter();
         }
 
+        public void Set(int amount)
+        {
+            _current = amount;
+            if (_current > Maximum) _current = Maximum;
+            if (_current < 0) _current = 0;
+            AdjustCounter();
+        }
+
         public void Increase(int amount)
         {
             _current += amount;
