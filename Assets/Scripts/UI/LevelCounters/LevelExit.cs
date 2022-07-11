@@ -6,5 +6,6 @@ using UnityEngine;
 public class LevelExit: ScriptableObject
 {
     public string Name;
+    public bool MarkedInWorldHub;
     public bool Found;
 }
