@@ -7,6 +7,7 @@ using Licht.Unity.CharacterControllers;
 using Licht.Unity.Objects;
 using Licht.Unity.Physics;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class CultistAnimator : BaseGameObject
 {
@@ -16,6 +17,7 @@ public class CultistAnimator : BaseGameObject
     public Animator Animator;
     public LichtPlatformerMoveController MoveController;
     public LichtPlatformerJumpController JumpController;
+    public AudioSource JumpSound;
 
     private void OnEnable()
     {
@@ -69,6 +71,12 @@ public class CultistAnimator : BaseGameObject
     private void OnJumpStart(LichtPlatformerJumpController.LichtPlatformerJumpEventArgs obj)
     {
         if (obj.Source != JumpController) return;
+
+        if (obj.CustomParams == null)
+        {
+            JumpSound.pitch = 0.9f + Random.value * 0.2f;
+            JumpSound.Play();
+        }
 
         Animator.SetBool("Jumping", true);
         DefaultMachinery.AddBasicMachine(WaitForGrounded());

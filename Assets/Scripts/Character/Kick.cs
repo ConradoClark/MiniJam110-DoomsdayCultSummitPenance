@@ -8,12 +8,15 @@ using Licht.Unity.Objects;
 using Licht.Unity.Physics;
 using Licht.Unity.Physics.CollisionDetection;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Kick : BaseGameObject
 {
     public float KickCooldownInSeconds;
     public float KickStrength;
     public LichtPhysicsCollisionDetector KickDetector;
+
+    public AudioSource KickSFX;
 
     private LichtPhysics _physics;
 
@@ -34,6 +37,9 @@ public class Kick : BaseGameObject
 
             if (kick.Collider != null && kickable.IsKickable())
             {
+                KickSFX.pitch = 0.9f + Random.value * 0.2f;
+                KickSFX.Play();
+
                 kickable.PhysicsObject.TryGetCustomObject(out Bouncy bouncy);
                 kickable.SetKicked();
 

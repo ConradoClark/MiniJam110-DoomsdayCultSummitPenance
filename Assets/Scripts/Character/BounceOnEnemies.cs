@@ -10,6 +10,7 @@ using Licht.Unity.Extensions;
 using Licht.Unity.Objects;
 using Licht.Unity.Physics;
 using Licht.Unity.Physics.CollisionDetection;
+using UnityEngine;
 
 public class BounceOnEnemies : BaseGameObject
 {
@@ -18,6 +19,7 @@ public class BounceOnEnemies : BaseGameObject
     public LichtPlatformerJumpController JumpController;
     public LichtPhysicsCollisionDetector BouncingDetector;
     public LichtPhysicsObject PhysicsObject;
+    public AudioSource BounceSFX;
 
     public Damageable Damageable;
 
@@ -61,7 +63,11 @@ public class BounceOnEnemies : BaseGameObject
                         Target = targetObject,
                     });
 
-                    if (!JumpController.IsJumping) yield return JumpController.ExecuteJump(customParams: BounceParams).AsCoroutine();
+                    if (!JumpController.IsJumping)
+                    {
+                        BounceSFX.Play();
+                        yield return JumpController.ExecuteJump(customParams: BounceParams).AsCoroutine();
+                    }
                     break;
                 }
             }

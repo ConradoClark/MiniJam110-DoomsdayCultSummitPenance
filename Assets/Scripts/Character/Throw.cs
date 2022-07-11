@@ -13,7 +13,7 @@ public class Throw : BaseGameObject
     public Pickup Pickup;
     public ScriptInput ThrowInput;
     public LichtPlatformerMoveController MoveController;
-
+    public AudioSource ThrowSFX;
     private InputAction _throwAction;
 
     protected override void OnAwake()
@@ -33,6 +33,7 @@ public class Throw : BaseGameObject
         {
             if (_throwAction.WasPerformedThisFrame() && Pickup.PickedUpObject != null)
             {
+                ThrowSFX.Play();
                 var latestDirection = MoveController.LatestDirection;
                 var latestXSpeed = MoveController.Target.LatestSpeed.x;
                 Pickup.Release(new Vector2(ThrowStrength * latestDirection + latestXSpeed, ThrowStrength*0.5f));

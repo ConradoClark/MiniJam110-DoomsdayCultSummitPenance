@@ -16,6 +16,7 @@ public class Pickup : BaseGameObject
 {
     public LichtPhysicsCollisionDetector GroundedDetector;
     public ScriptInput PickupInput;
+    public AudioSource PickupSFX;
 
     private InputAction _pickupAction;
     private LichtPhysics _physics;
@@ -57,8 +58,8 @@ public class Pickup : BaseGameObject
 
             if (_pickupAction.WasPerformedThisFrame() && trigger.Collider != null && PickedUpObject == null)
             {
-                Debug.Log("Picked up " + pickupable.name);
-                
+                PickupSFX.Play();
+
                 _pickupEventPublisher.PublishEvent(PickupEvents.OnPickup, new PickupEventArgs
                 {
                     Source = this,
