@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Core;
+using Licht.Impl.Events;
 using Licht.Impl.Orchestration;
+using Licht.Interfaces.Events;
 using Licht.Unity.Objects;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -19,11 +21,19 @@ namespace Assets.Scripts.Mechanics
         public List<Spawn> Spawns;
         public bool IsComplete { get; private set; }
 
+        public enum SacrificeEvents
+        {
+            OnSacrifice
+        }
+
+        private IEventPublisher<SacrificeEvents> _sacrificePublisher;
+
         protected override void OnAwake()
         {
             base.OnAwake();
             Spawns = new List<Spawn>();
-            // load spawns, place them at right spot
+
+            _sacrificePublisher = this.RegisterAsEventPublisher<SacrificeEvents>();
 
             var spawnCollection = SceneObject<SpawnCollection>.Instance().Spawns;
 
@@ -56,6 +66,7 @@ namespace Assets.Scripts.Mechanics
             
             spawn.MarkAsSacrifice();
             CheckSacrifice();
+            _sacrificePublisher.PublishEvent(SacrificeEvents.OnSacrifice);
             OnSacrifice?.Invoke();
         }
 
