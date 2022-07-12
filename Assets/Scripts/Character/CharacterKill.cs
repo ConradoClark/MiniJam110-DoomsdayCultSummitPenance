@@ -1,8 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Assets.Scripts.Character;
 using Assets.Scripts.Enemies;
 using Licht.Impl.Orchestration;
 using Licht.Unity.Extensions;

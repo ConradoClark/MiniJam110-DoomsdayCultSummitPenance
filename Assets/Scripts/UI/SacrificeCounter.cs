@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using Assets.Scripts.Mechanics;
 using Assets.Scripts.UI;
 using Licht.Impl.Events;
 using Licht.Unity.Objects;
-using UnityEngine;
 
 public class SacrificeCounter : BaseUIObject
 {

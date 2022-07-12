@@ -6,7 +6,6 @@ using Assets.Scripts.Core;
 using Licht.Impl.Events;
 using Licht.Impl.Orchestration;
 using Licht.Unity.Extensions;
-using Licht.Unity.Objects;
 using Licht.Unity.Physics;
 using Licht.Unity.Physics.CollisionDetection;
 

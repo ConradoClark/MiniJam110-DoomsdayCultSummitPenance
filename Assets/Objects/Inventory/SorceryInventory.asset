@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: SorceryInventory
   m_EditorClassIdentifier: 
   Identifier: {fileID: 11400000, guid: b5eb8d088ddce7843b669cc4dcbd051f, type: 2}
-  Amount: 100
+  Amount: 0

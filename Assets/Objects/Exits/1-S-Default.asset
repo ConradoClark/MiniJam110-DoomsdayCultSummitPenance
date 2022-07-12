@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 603f431150c96d14fa2305752944f3d2, type: 3}
   m_Name: 1-S-Default
   m_EditorClassIdentifier: 
-  Name: 1-2-Default
+  Name: 1-S-Default
   MarkedInWorldHub: 0
   Found: 0

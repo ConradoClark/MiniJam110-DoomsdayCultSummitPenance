@@ -1,10 +1,8 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Licht.Impl.Orchestration;
 using Licht.Unity.Extensions;
 using Licht.Unity.Objects;
-using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class CaravanIcon : BaseUIObject

@@ -1,11 +1,11 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.UI;
 using Licht.Impl.Orchestration;
 using Licht.Unity.Mixins;
 using Licht.Unity.Objects;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MenuButton : BaseUIObject
 {
@@ -16,10 +16,12 @@ public class MenuButton : BaseUIObject
     public ScriptInput MousePosInput;
     public ScriptInput MouseClickInput;
     public MenuButtonFunction MenuButtonFunction;
-
+    public ScriptInput ConfirmInput;
+    private InputAction _confirm;
     protected override void OnAwake()
     {
         base.OnAwake();
+        _confirm = PlayerInput.GetPlayerByIndex(0).actions[ConfirmInput.ActionName];
         _clickableObject = new ClickableObjectMixinBuilder(this, MousePosInput, MouseClickInput).Build();
     }
 
@@ -35,7 +37,7 @@ public class MenuButton : BaseUIObject
     {
         while (isActiveAndEnabled)
         {
-            if (_clickableObject.WasClickedThisFrame() && MenuButtonFunction!=null)
+            if ((_clickableObject.WasClickedThisFrame() || _confirm.WasPerformedThisFrame()) && MenuButtonFunction!=null)
             {
                 yield return MenuButtonFunction.Execute().AsCoroutine();
             }

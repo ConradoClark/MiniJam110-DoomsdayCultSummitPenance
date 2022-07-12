@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Licht.Unity.Objects;
 using UnityEngine;
 

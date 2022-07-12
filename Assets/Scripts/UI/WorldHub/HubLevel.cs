@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.UI.WorldHub;
@@ -38,6 +37,14 @@ public class HubLevel : BaseUIObject
         }
         else
         {
+            if (Requirements.Any(r => !r.MarkedInWorldHub))
+            {
+                foreach (var req in Requirements)
+                {
+                    req.MarkedInWorldHub = true;
+                }
+                SelectLevel();
+            }
             DefaultMachinery.AddBasicMachine(HandleClick());
         }
     }
@@ -49,12 +56,17 @@ public class HubLevel : BaseUIObject
             if (_clickable.WasClickedThisFrame() && _hubLevelSelector.HubLevel != this)
             {
                 SelectSFX.Play();
-                _hubLevelText.TextComponent.text = LevelName;
-                _hubLevelSelector.HubLevel = this;
-                _hubLevelSelector.transform.position = transform.position;
+                SelectLevel();
             }
 
             yield return TimeYields.WaitOneFrameX;
         }
+    }
+
+    private void SelectLevel()
+    {
+        _hubLevelText.TextComponent.text = LevelName;
+        _hubLevelSelector.HubLevel = this;
+        _hubLevelSelector.transform.position = transform.position;
     }
 }

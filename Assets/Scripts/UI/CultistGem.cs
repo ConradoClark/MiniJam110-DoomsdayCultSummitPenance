@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.Character;
 using Assets.Scripts.UI;

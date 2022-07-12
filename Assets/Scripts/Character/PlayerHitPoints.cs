@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using Assets.Scripts.UI;
 using Licht.Unity.Objects;
 using Licht.Unity.Physics;

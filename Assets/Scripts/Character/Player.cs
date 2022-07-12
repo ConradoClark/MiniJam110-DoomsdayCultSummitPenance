@@ -1,10 +1,8 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.Character;
 using Licht.Impl.Orchestration;
 using Licht.Unity.CharacterControllers;
-using Licht.Unity.Extensions;
 using Licht.Unity.Objects;
 using Licht.Unity.Physics;
 using UnityEngine;

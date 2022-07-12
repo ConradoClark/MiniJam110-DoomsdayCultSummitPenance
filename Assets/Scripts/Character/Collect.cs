@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Licht.Impl.Orchestration;
@@ -8,7 +7,6 @@ using Licht.Unity.Objects;
 using Licht.Unity.Physics;
 using Licht.Unity.Physics.CollisionDetection;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class Collect : BaseGameObject
 {

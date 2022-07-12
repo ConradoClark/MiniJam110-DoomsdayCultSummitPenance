@@ -1,6 +1,4 @@
-﻿using System;
-using Licht.Unity.Objects;
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "LevelExit", menuName = "DoomsdayCult/LevelExit", order = 1)]
 public class LevelExit: ScriptableObject

@@ -416,6 +416,7 @@ MonoBehaviour:
   MousePosInput: {fileID: 11400000, guid: b93138c159b773045a569bbe17275be3, type: 2}
   MouseClickInput: {fileID: 11400000, guid: f85e7525be19a0e44858cbd221b9bcfe, type: 2}
   MenuButtonFunction: {fileID: 778784094}
+  ConfirmInput: {fileID: 11400000, guid: bca13a3262494784abbb4f1268c45b78, type: 2}
 --- !u!114 &778784094
 MonoBehaviour:
   m_ObjectHideFlags: 0
