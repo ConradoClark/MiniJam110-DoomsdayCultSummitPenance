@@ -24,11 +24,21 @@ namespace Assets.Scripts.UI.LevelCounters
         private InputAction _confirmExit;
         public Transform[] Objects;
         public TMP_Text SacText;
+        public TMP_Text Exits;
+        public TMP_Text Sacrifices;
+        public TMP_Text Time;
+
+        private double _startTime;
+        private LevelExits _levelExits;
+        private SacrificeCounter _sacrificeCounter;
 
         protected override void OnAwake()
         {
             base.OnAwake();
+            _levelExits = SceneObject<LevelExits>.Instance();
             _confirmExit = PlayerInput.GetPlayerByIndex(0).actions[Confirm.ActionName];
+            _startTime = UITimer.TotalElapsedTimeInMilliseconds;
+            _sacrificeCounter = SceneObject<SacrificeCounter>.Instance();
         }
 
         private IEnumerable<IEnumerable<Action>> AnimateBG()
@@ -45,8 +55,22 @@ namespace Assets.Scripts.UI.LevelCounters
                 .Build();
         }
 
+        private string FormatTime(double ms)
+        {
+            var minutes = (float) (ms / 1000) / 60;
+            var seconds = (float) (ms / 1000) % 60;
+
+            return
+                $"00:{Mathf.FloorToInt(minutes).ToString().PadLeft(2, '0')}:{Mathf.FloorToInt(seconds).ToString().PadLeft(2, '0')}";
+        }
+
         public IEnumerable<IEnumerable<Action>> Show()
         {
+            var endTime = UITimer.TotalElapsedTimeInMilliseconds - _startTime;
+            Time.text = FormatTime(endTime);
+            Exits.text = $"{_levelExits.ExitsFound}/{_levelExits.Exits.Length}";
+            Sacrifices.text = $"{_sacrificeCounter.SacrificesMade}/{_sacrificeCounter.NumberOfSacrifices}";
+
             BG.enabled = true;
 
             DefaultMachinery.AddBasicMachine(AnimateBG());

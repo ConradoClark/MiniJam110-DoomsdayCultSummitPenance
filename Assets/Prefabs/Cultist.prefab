@@ -1141,6 +1141,7 @@ GameObject:
   - component: {fileID: 392875851263789110}
   - component: {fileID: 392875851263789109}
   - component: {fileID: 392875851263789108}
+  - component: {fileID: 2678786686605239519}
   m_Layer: 0
   m_Name: Abilities
   m_TagString: Untagged
@@ -1304,6 +1305,23 @@ MonoBehaviour:
   AudioSource: {fileID: 392875851827426307}
   Snowflake: {fileID: 11400000, guid: 49890eece6021634ba0daa975505e65d, type: 2}
   Pickup: {fileID: 392875851263789105}
+--- !u!114 &2678786686605239519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 392875851263789132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f39f4b293d70cf40ac623c7c73ab780, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HitBox: {fileID: 392875851476926027}
+  OpenInput: {fileID: 11400000, guid: 3ad75c9dc26b5cf498d5321a19614044, type: 2}
+  MoveController: {fileID: 392875851395560639}
+  JumpController: {fileID: 392875851395560638}
+  SpriteRenderer: {fileID: 392875850500306053}
 --- !u!1 &392875851267351240
 GameObject:
   m_ObjectHideFlags: 0

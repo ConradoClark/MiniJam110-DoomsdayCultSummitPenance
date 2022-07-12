@@ -10,6 +10,7 @@ public class SacrificeCounter : BaseUIObject
 {
     public UICounter UICounter;
     public int NumberOfSacrifices;
+    public int SacrificesMade;
 
     protected override void OnAwake()
     {
@@ -25,6 +26,7 @@ public class SacrificeCounter : BaseUIObject
     private void OnSacrifice()
     {
         UICounter.Increase(1);
+        SacrificesMade++;
     }
 
     private void OnDisable()
