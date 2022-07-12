@@ -23,7 +23,7 @@ public class IndicatorIcon : BaseUIObject
         while (isActiveAndEnabled)
         {
             yield return transform.GetAccessor()
-                .Position
+                .LocalPosition
                 .Y
                 .Increase(0.25f)
                 .Over(0.5f)
@@ -33,7 +33,7 @@ public class IndicatorIcon : BaseUIObject
                 .Build();
 
             yield return transform.GetAccessor()
-                .Position
+                .LocalPosition
                 .Y
                 .Decrease(0.25f)
                 .Over(0.5f)
