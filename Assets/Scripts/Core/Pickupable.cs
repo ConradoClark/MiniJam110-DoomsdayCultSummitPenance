@@ -15,7 +15,7 @@ public class Pickupable : BaseGameObject
     public ScriptIdentifier Gravity;
     public Pickupable RedirectTo;
     public Pickupable RedirectedTo;
-
+    public bool AlwaysAllowsPickup;
     public bool IsPickedUp { get; private set; }
 
     public bool AllowsPickup { get;  set; }
@@ -71,9 +71,10 @@ public class Pickupable : BaseGameObject
             RedirectedTo.PickupCollider.enabled = true;
             RedirectedTo = null;
         }
+
         IsPickedUp = false;
         PhysicsObject.enabled = true;
-        PickupCollider.enabled = AllowsPickup;
+        PickupCollider.enabled = AlwaysAllowsPickup ? true : AllowsPickup;
         ObjectToPick.parent = _originalParent;
         _physics.UnblockCustomPhysicsForceForObject(this, PhysicsObject, Gravity.Name);
         DefaultMachinery.AddBasicMachine(HandleRelease(speed));

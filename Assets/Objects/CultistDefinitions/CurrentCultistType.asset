@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b82468bbd0a4ffd48a6e0f352f2a84f9, type: 3}
   m_Name: CurrentCultistType
   m_EditorClassIdentifier: 
-  SpriteMaterial: {fileID: 2100000, guid: 70abb848120b80e418567353dba359dd, type: 2}
-  AbilityIdentifier: {fileID: 11400000, guid: 10f90ea4cc0c81344bc43b87a785f475, type: 2}
-  Name: Green
-  Ability: Ordinary
-  Color: {r: 0.6392157, g: 0.7607844, b: 0.5568628, a: 1}
+  SpriteMaterial: {fileID: 2100000, guid: cf288858821298f419e8456e250e16cc, type: 2}
+  AbilityIdentifier: {fileID: 11400000, guid: b8d55e8fb8bc2a945b6851d4a421d2c8, type: 2}
+  Name: Yellow
+  Ability: Bouncy
+  Color: {r: 0.7176471, g: 0.6901961, b: 0.5019608, a: 1}

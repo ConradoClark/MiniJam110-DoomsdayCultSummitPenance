@@ -88,6 +88,8 @@ public class Pickup : BaseGameObject
                     yield return TimeYields.WaitOneFrameX;
                 }
 
+                yield return TimeYields.WaitOneFrameX;
+
                 PickedUpObject = null;
             }
 

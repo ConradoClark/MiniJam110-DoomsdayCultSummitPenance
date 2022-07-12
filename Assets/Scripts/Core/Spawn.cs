@@ -60,6 +60,7 @@ public class Spawn : BaseGameObject
     public void MarkAsSacrifice()
     {
         IsSacrificed = true;
+        if (Animator == null) return;
         DefaultMachinery.AddBasicMachine(DisablePhysicsObject().Combine(TriggerSacrificeAnim()));
     }
 

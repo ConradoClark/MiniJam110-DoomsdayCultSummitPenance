@@ -48,7 +48,7 @@ public class Kick : BaseGameObject
                 kickable.PhysicsObject.TryGetCustomObject(out Bouncy bouncy);
                 kickable.SetKicked();
 
-                var initialSpeed = new Vector2(-kick.Hit.normal.x * KickStrength, KickStrength * 0.35f);
+                var initialSpeed = new Vector2(-kick.Hit.normal.x * KickStrength, KickStrength * 0.36f);
 
                 var kickX = kickable.PhysicsObject.GetSpeedAccessor(initialSpeed)
                     .X
