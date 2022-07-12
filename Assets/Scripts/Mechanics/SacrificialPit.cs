@@ -14,6 +14,7 @@ public class SacrificialPit : BaseGameObject
 {
     public LockedBehindSacrifice Trigger;
     public LichtPhysicsCollisionDetector PitDetector;
+    public AudioSource SacrificeSFX;
 
     private LichtPhysics _physics;
 
@@ -45,6 +46,7 @@ public class SacrificialPit : BaseGameObject
                 if (sacrifice != null && !sacrifice.Spawns.Contains(spawn))
                 {
                     sacrifice.MakeSacrifice(spawn);
+                    if (SacrificeSFX!=null) SacrificeSFX.Play();
                 }
             }
 
