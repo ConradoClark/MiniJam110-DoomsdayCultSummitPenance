@@ -13,6 +13,9 @@ public class Pickupable : BaseGameObject
     public LichtPhysicsObject PhysicsObject;
     public Collider2D PickupCollider;
     public ScriptIdentifier Gravity;
+    public Pickupable RedirectTo;
+    public Pickupable RedirectedTo;
+
     public bool IsPickedUp { get; private set; }
 
     public bool AllowsPickup { get;  set; }
@@ -44,12 +47,30 @@ public class Pickupable : BaseGameObject
         if (obj.Target != this) return;
         PickupCollider.enabled = false;
         PhysicsObject.enabled = false;
+
+        if (RedirectTo != null && RedirectTo!=this )
+        {
+            RedirectTo.RedirectedTo = this;
+            RedirectTo.OnPickup(new PickupEventArgs
+            {
+                Target = RedirectTo
+            });
+
+            return;
+        }
+
         _physics.BlockCustomPhysicsForceForObject(this, PhysicsObject, Gravity.Name);
         IsPickedUp = true;
     }
 
     public void Release(Vector2 speed)
     {
+        if (RedirectedTo != null)
+        {
+            RedirectedTo.PhysicsObject.enabled = true;
+            RedirectedTo.PickupCollider.enabled = true;
+            RedirectedTo = null;
+        }
         IsPickedUp = false;
         PhysicsObject.enabled = true;
         PickupCollider.enabled = AllowsPickup;

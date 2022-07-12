@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.Character;
 using Assets.Scripts.Core;
 using Licht.Impl.Events;
 using Licht.Impl.Orchestration;
@@ -20,7 +21,8 @@ public class Damageable : Resettable
     {
         ThrownObject,
         Touch,
-        Bounce
+        Bounce,
+        Freeze
     }
 
     public DamageType[] HitByDamageTypes;
@@ -42,7 +44,14 @@ public class Damageable : Resettable
         CurrentHitPoints = HitPoints;
         CanBeDamaged = CurrentHitPoints > 0;
         DefaultMachinery.AddBasicMachine(DetectDamage());
+        DefaultMachinery.AddBasicMachine(SetCustomObject());
         this.ObserveEvent<HitEvents, OnHitEventArgs>(HitEvents.OnHit, OnHit);
+    }
+
+    private IEnumerable<IEnumerable<Action>> SetCustomObject()
+    {
+        yield return TimeYields.WaitOneFrameX;
+        if (HitDetector != null && HitDetector.PhysicsObject != null) HitDetector.PhysicsObject.AddCustomObject(this);
     }
 
     private void OnHit(OnHitEventArgs obj)
@@ -71,12 +80,14 @@ public class Damageable : Resettable
     private void OnDisable()
     {
         this.StopObservingEvent<HitEvents, OnHitEventArgs>(HitEvents.OnHit, OnHit);
+        if (HitDetector != null && HitDetector.PhysicsObject != null) HitDetector.PhysicsObject.RemoveCustomObject<Damageable>();
     }
 
     private static readonly Dictionary<DamageType, (Type[] types, bool requiresHit)> DamageTypeMatch = new()
     {
         { DamageType.ThrownObject, (new[] { typeof(Kickable) }, false) },
         { DamageType.Touch, (new[] { typeof(DamageOnTouch) }, false) },
+        { DamageType.Freeze, (new[] { typeof(FreezeAuraEffect) }, false) },
         { DamageType.Bounce, (new[] { typeof(BounceOnEnemies) }, true) }
     };
 

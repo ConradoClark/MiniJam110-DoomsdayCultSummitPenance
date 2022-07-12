@@ -37,6 +37,11 @@ public class Kick : BaseGameObject
 
             if (kick.Collider != null && kickable.IsKickable())
             {
+                if (kickable.RedirectTo != null && kickable != kickable.RedirectTo)
+                {
+                    kickable = kickable.RedirectTo;
+                }
+
                 KickSFX.pitch = 0.9f + Random.value * 0.2f;
                 KickSFX.Play();
 

@@ -13,4 +13,7 @@ MonoBehaviour:
   m_Name: CurrentCultistType
   m_EditorClassIdentifier: 
   SpriteMaterial: {fileID: 2100000, guid: 70abb848120b80e418567353dba359dd, type: 2}
-  AbilityIdentifier: {fileID: 0}
+  AbilityIdentifier: {fileID: 11400000, guid: 10f90ea4cc0c81344bc43b87a785f475, type: 2}
+  Name: Green
+  Ability: Ordinary
+  Color: {r: 0.6392157, g: 0.7607844, b: 0.5568628, a: 1}

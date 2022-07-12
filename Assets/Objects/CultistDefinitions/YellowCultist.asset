@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: YellowCultist
   m_EditorClassIdentifier: 
   SpriteMaterial: {fileID: 2100000, guid: 9f8d863a54e90e840947a83cd505ab7c, type: 2}
-  AbilityIdentifier: {fileID: 0}
+  AbilityIdentifier: {fileID: 11400000, guid: 1389249f328a4d14d9b6cac416acc0c9, type: 2}
   Name: Yellow
   Ability: Bouncy
   Color: {r: 0.7176471, g: 0.6901961, b: 0.5019608, a: 1}

@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7f6cd371fe8fbd4bbb6e3c68edeb7a9, type: 3}
   m_Name: 1-1_Basketball
   m_EditorClassIdentifier: 
-  SacrificeSpawns:
-  - {fileID: 11400000, guid: ba83aa5d0c474e546970cd6ef09bca53, type: 2}
+  SacrificeSpawns: []
   SacrificeCultists: []

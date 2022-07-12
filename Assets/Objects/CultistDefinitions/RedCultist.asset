@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RedCultist
   m_EditorClassIdentifier: 
   SpriteMaterial: {fileID: 2100000, guid: cf288858821298f419e8456e250e16cc, type: 2}
-  AbilityIdentifier: {fileID: 0}
+  AbilityIdentifier: {fileID: 11400000, guid: b8d55e8fb8bc2a945b6851d4a421d2c8, type: 2}
   Name: Red
   Ability: Speedy
   Color: {r: 0.61960787, g: 0.31764707, b: 0.3647059, a: 1}

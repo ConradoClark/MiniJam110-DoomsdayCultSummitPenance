@@ -40,10 +40,11 @@ public class Pickup : BaseGameObject
         DefaultMachinery.AddBasicMachine(HandlePickup());
     }
 
-    public void Release(Vector2 speed)
+    public IEnumerable<IEnumerable<Action>> Release(Vector2 speed)
     {
-        if (PickedUpObject == null) return;
+        if (PickedUpObject == null) yield break;
         PickedUpObject.Release(speed);
+        yield return TimeYields.WaitOneFrameX;
         PickedUpObject = null;
     }
 
@@ -56,7 +57,7 @@ public class Pickup : BaseGameObject
                 _physics.TryGetPhysicsObjectByCollider(t.Collider, out var targetObject)
                 && targetObject.TryGetCustomObject(out pickupable));
 
-            if (_pickupAction.WasPerformedThisFrame() && trigger.Collider != null && PickedUpObject == null)
+            if (_pickupAction.IsPressed() && trigger.Collider != null && PickedUpObject == null)
             {
                 PickupSFX.Play();
 
@@ -65,6 +66,11 @@ public class Pickup : BaseGameObject
                     Source = this,
                     Target = pickupable
                 });
+
+                if (pickupable.RedirectTo != null && pickupable != pickupable.RedirectTo)
+                {
+                    pickupable = pickupable.RedirectTo;
+                }   
 
                 pickupable.ObjectToPick.SetParent(transform);
 

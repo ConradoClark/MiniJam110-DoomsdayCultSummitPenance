@@ -276,7 +276,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HitPoints: 1
   Killable: {fileID: 2260230566953959581}
-  HitByDamageTypes: 0200000000000000
+  HitByDamageTypes: 020000000000000003000000
   HitDetector: {fileID: 2260230567756280393}
   DamageCooldownInSeconds: 1
 --- !u!114 &2260230566953959581

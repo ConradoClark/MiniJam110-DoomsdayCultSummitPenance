@@ -13,7 +13,4 @@ MonoBehaviour:
   m_Name: CultistList
   m_EditorClassIdentifier: 
   Cultists:
-  - {fileID: 11400000, guid: b0c62ab261b8486418aa346ead7c2274, type: 2}
-  - {fileID: 11400000, guid: b3968c400bd1e874e9abf98ff2eb146a, type: 2}
-  - {fileID: 11400000, guid: d9379324c6dfee240b3c8f3aea31310c, type: 2}
   - {fileID: 11400000, guid: d716b219c952e624ea10d40d32712021, type: 2}

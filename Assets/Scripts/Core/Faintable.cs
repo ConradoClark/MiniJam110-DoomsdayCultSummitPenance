@@ -21,6 +21,7 @@ public class Faintable : Resettable
     public Kickable Kickable;
 
     public bool IsFainted { get; private set; }
+    public bool IsFrozen { get; set; }
     private DurationPoolablePool _faintEffectPool;
     private DurationPoolable _currentFaintEffect;
     private bool _comingBackToLife;
@@ -46,9 +47,14 @@ public class Faintable : Resettable
     {
         if (obj.Target != PhysicsObject) return;
 
+        Faint();
+    }
+
+    public void Faint(bool showDizzy = true)
+    {
         IsFainted = FaintCollider.enabled = true;
         Animator.SetBool("Faint", true);
-        if (_faintEffectPool.TryGetFromPool(out var effect))
+        if (showDizzy && _faintEffectPool.TryGetFromPool(out var effect))
         {
             SetEffect(effect);
         }
@@ -70,6 +76,11 @@ public class Faintable : Resettable
 
     private IEnumerable<IEnumerable<Action>> ComeBackToLife(bool instantly = false)
     {
+        if (IsFrozen)
+        {
+            yield return TimeYields.WaitOneFrameX;
+            yield break;
+        }
         if (_comingBackToLife)
         {
             _comingBackToLife = false;

@@ -36,7 +36,7 @@ public class Throw : BaseGameObject
                 ThrowSFX.Play();
                 var latestDirection = MoveController.LatestDirection;
                 var latestXSpeed = MoveController.Target.LatestSpeed.x;
-                Pickup.Release(new Vector2(ThrowStrength * latestDirection + latestXSpeed, ThrowStrength*0.5f));
+                yield return Pickup.Release(new Vector2(ThrowStrength * latestDirection + latestXSpeed, ThrowStrength*0.5f)).AsCoroutine();
             }
 
             yield return TimeYields.WaitOneFrameX;

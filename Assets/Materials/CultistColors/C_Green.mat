@@ -81,7 +81,7 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.9056604, g: 0.9056604, b: 0.9056604, a: 1}
     - _ColorReplSource1: {r: 1, g: 1, b: 1, a: 1}
     - _ColorReplSource2: {r: 1, g: 1, b: 1, a: 1}
     - _ColorReplTarget1: {r: 1, g: 1, b: 1, a: 1}

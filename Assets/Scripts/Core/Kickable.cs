@@ -13,6 +13,7 @@ public class Kickable : BaseGameObject
     public Collider2D HitBox;
     public LichtPhysicsObject PhysicsObject;
     public Faintable Faintable;
+    public Kickable RedirectTo;
     public bool AlwaysKickable;
     public float KickStateDurationInSeconds = 2f;
 
